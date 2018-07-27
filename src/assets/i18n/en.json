@@ -1,0 +1,14 @@
+{
+  "FFTitle": "FFBCV Angular prototype",
+  "CustNeed": "Customer Needs",
+  "MarkOport": "Market Opportunity",
+  "Solution": "Solution",
+  "Title": "Translation example",
+  "Intro": "Hello I am {{name}}, I am {{age}} years old.",
+  "Startpage": {
+    "TranslationSections": "Hello World"
+  },
+  "Aboutpage": {
+    "TranslationSections": "We are letsboot"
+  }
+}
