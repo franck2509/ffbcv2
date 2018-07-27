@@ -1,27 +1,26 @@
 <h1 translate>FFTitle</h1>
 <h2 id="vc">Value Check</h2>
-<h3 id="vq1" translate>CustNeed</h3>
-<textarea id="textq1" rows="5" cols="90"></textarea><br>
-<select id="valueq1">
-  <option *ngFor="let selectScale of selectScales" [value]="selectScale.value">{{selectScale.display}}</option>
-</select>
-<br><br>
-<h3 id="vq2" translate>MarkOport</h3>
-<textarea id="textq2" rows="5" cols="90"></textarea><br>
-<select id="valueq2">
-  <option *ngFor="let selectScale of selectScales" [value]="selectScale.value">{{selectScale.display}}</option>
-</select>
-<br><br>
-<h3 id="vq3" translate>Solution</h3>
-<textarea id="textq3" rows="5" cols="90"></textarea><br>
-<select id="valueq3">
-  <option *ngFor="let selectScale of selectScales" [value]="selectScale.value">{{selectScale.display}}</option>
-</select>
-<br>
+
+<div *ngFor="let valueCheck of valueChecks">
+  <h3 class="vcTitle" translate>{{valueCheck}}</h3>
+  <textarea class="vcText" rows="5" cols="90"></textarea><br>
+  <select class="vcQ">
+    <option *ngFor="let selectScale of selectScales" [value]="selectScale.value">{{selectScale.display}}</option>
+  </select>
+  <br>
+</div>
+
 <button id="validate" type="submit" (click)= "value()">Submit</button>
 <button type="submit" (click)="savePDF()">Download PDF</button>
 <p>Average: {{score}}%</p>
 <br><br>
+
+<button (click)="switchLanguage('en')">en</button>
+
+<button (click)="switchLanguage('de')">de</button>
+
+<tr-bootstrap></tr-bootstrap>
+
 <!--h1 translate>Title</h1>
 
 <div>
@@ -37,9 +36,3 @@
 </div>
 
 <br/-->
-<button (click)="switchLanguage('en')">en</button>
-
-<button (click)="switchLanguage('fr')">fr</button>
-<button (click)="switchLanguage('de')">de</button>
-
-<tr-bootstrap></tr-bootstrap>
