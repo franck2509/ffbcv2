@@ -45,18 +45,21 @@ export class AppComponent {
     this.amount = 0;
 
     // Adding Value Check Title to PDF
-    this.text.push(<HTMLInputElement>document.getElementById('vc').innerHTML);
+    this.text.push(document.getElementById('vc').innerHTML);
 
     // Loop through Value Check Questions
     for (let i = 0; i < this.valueChecks.length; i++) {
       // if: Checks that question hasn't chosen not applicable, adds value of dropdown and increases counter
-      if ((<HTMLInputElement>document.getElementsByClassName('vcQ')[i].value) !== 'null') {
-        this.total += parseInt(<HTMLInputElement>document.getElementsByClassName('vcQ')[i].value);
+      let vcDrop = <HTMLInputElement>document.getElementsByClassName('vcQ')[i];
+      if ((vcDrop.value) !== 'null') {
+        this.total += parseInt(vcDrop.value);
         this.amount += 1;
       }
       // Appends PDF content with question, value and text
-      this.text.push(<HTMLInputElement>document.getElementsByClassName('vcTitle')[i].innerHTML + ": " + <HTMLInputElement>document.getElementsByClassName('vcQ')[i].value);
-      this.text.push(<HTMLInputElement>document.getElementsByClassName('vcText')[i].value);
+      let vcTitle = <HTMLInputElement>document.getElementsByClassName('vcTitle')[i]
+      this.text.push(vcTitle.innerHTML + ": " + vcDrop.value);
+      let vcText = <HTMLInputElement>document.getElementsByClassName('vcText')[i];
+      this.text.push(vcText.value);
     }
 
     // Calculations
