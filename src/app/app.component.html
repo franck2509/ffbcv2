@@ -1,13 +1,22 @@
 <h1 translate>FFTitle</h1>
-<h2 id="vc">Value Check</h2>
+<h3 translate>Select</h3>
+<input type="checkbox" [(ngModel)]="valueCheck" name="valCheck" value="Value Check" checked="valueCheck"> Value Check<br>
 
-<div *ngFor="let valueCheck of valueChecks">
-  <h3 class="vcTitle" translate>{{valueCheck}}</h3>
-  <textarea class="vcText" rows="5" cols="90"></textarea><br>
-  <select class="vcQ">
-    <option *ngFor="let selectScale of selectScales" [value]="selectScale.value">{{selectScale.display}}</option>
-  </select>
-  <br>
+<div *ngIf="valueCheck">
+<h2 id="vc">Value Check</h2>
+  <div *ngFor="let valueCheck of valueChecks">
+    <h3 class="vcTitle" translate>{{valueCheck}}</h3>
+    <ul>
+      <li *ngFor="let i = index" translate>{{valueCheck}}Q.{{i}}</li>
+    </ul>
+    <textarea class="vcText" rows="5" cols="90"></textarea><br>
+    <select class="vcQ">
+      <option *ngFor="let selectScale of selectScales" [value]="selectScale.value">{{selectScale.display}}</option>
+    </select>
+    <p translate>weight</p>
+    <input class="vcWeight" type="text" value="1">
+    <br><br><br>
+  </div>
 </div>
 
 <button id="validate" type="submit" (click)= "value()">Submit</button>
@@ -19,7 +28,7 @@
 
 <button (click)="switchLanguage('de')">de</button>
 
-<tr-bootstrap></tr-bootstrap>
+<!--tr-bootstrap></tr-bootstrap-->
 
 <!--h1 translate>Title</h1>
 

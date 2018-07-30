@@ -1,6 +1,19 @@
+import {Pipe, PipeTransform} from '@angular/core';
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as jsPDF from 'jspdf';
+
+
+@Pipe({name: 'keys'})
+export class KeysPipe implements PipeTransform {
+  transform(value, args:string[]) : any {
+    let keys = [];
+    for (let key in value) {
+      keys.push({key: key, value: value[key]});
+    }
+    return keys;
+  }
+}
 
 @Component({
   selector: 'tr-root',
@@ -12,6 +25,8 @@ export class AppComponent {
     name: 'Arthur',
     age: 42
   };
+
+  valueCheck = true;
 
   valueChecks = [
     "CustNeed", "MarkOport", "Solution"
@@ -44,27 +59,36 @@ export class AppComponent {
     this.total = 0;
     this.amount = 0;
 
-    // Adding Value Check Title to PDF
-    this.text.push(document.getElementById('vc').innerHTML);
-
-    // Loop through Value Check Questions
-    for (let i = 0; i < this.valueChecks.length; i++) {
-      // if: Checks that question hasn't chosen not applicable, adds value of dropdown and increases counter
-      let vcDrop = <HTMLInputElement>document.getElementsByClassName('vcQ')[i];
-      if ((vcDrop.value) !== 'null') {
-        this.total += parseInt(vcDrop.value);
-        this.amount += 1;
-      }
-      // Appends PDF content with question, value and text
-      let vcTitle = <HTMLInputElement>document.getElementsByClassName('vcTitle')[i]
-      this.text.push(vcTitle.innerHTML + ": " + vcDrop.value);
-      let vcText = <HTMLInputElement>document.getElementsByClassName('vcText')[i];
-      this.text.push(vcText.value);
-    }
+    // get input from each check
+    this.valCheckEval();
 
     // Calculations
     this.score = this.total / this.amount;
     this.text.push("Score: " + this.score.toString())
+  }
+
+  valCheckEval(){
+    if (this.valueCheck) {
+      // Adding Value Check Title to PDF
+      this.text.push(document.getElementById('vc').innerHTML);
+
+      // Loop through Value Check Questions
+      for (let i = 0; i < this.valueChecks.length; i++) {
+        let w = <HTMLInputElement>document.getElementsByClassName('vcWeight')[i];
+        let weight = parseInt(w.value)
+        // if: Checks that question hasn't chosen not applicable, adds value of dropdown and increases counter
+        let vcDrop = <HTMLInputElement>document.getElementsByClassName('vcQ')[i];
+        if ((vcDrop.value) !== 'null') {
+          this.total += parseInt(vcDrop.value) * weight;
+          this.amount += weight;
+        }
+        // Appends PDF content with question, value and text
+        let vcTitle = <HTMLInputElement>document.getElementsByClassName('vcTitle')[i];
+        this.text.push(vcTitle.innerHTML + ": " + vcDrop.value);
+        let vcText = <HTMLInputElement>document.getElementsByClassName('vcText')[i];
+        this.text.push(vcText.value);
+      }
+    }
   }
 
   // used to create PDF and make it download

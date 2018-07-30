@@ -1,6 +1,11 @@
 {
   "FFTitle": "FFBCV Angular prototype",
+  "Select": "Select Questionnaires",
+  "weight": "Weight",
   "CustNeed": "Customer Needs",
+  "CustNeedQ": {"0": "To what extent is the customer and the customer's significant unmet need precisely understood and described?",
+                "1": "To what extent is the understanding of the customer's significant need related to his/her future fitness?",
+                "2": "To what extent are there systems, processes, feedback loops in place or planned which support understanding the evolution of customer's significant needs?"},
   "MarkOport": "Market Opportunity",
   "Solution": "Solution",
   "Title": "Translation example",
