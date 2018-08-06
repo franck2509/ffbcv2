@@ -2,22 +2,41 @@
 <h3 translate>Select</h3>
 <input type="checkbox" [(ngModel)]="valueCheck" name="valCheck" value="Value Check" checked="valueCheck"> Value Check<br>
 
+<!-- Value Check Questionnaire -->
 <div *ngIf="valueCheck">
 <h2 id="vc">Value Check</h2>
+  <!-- Loop through questions -->
   <div *ngFor="let valueCheck of valueChecks">
-    <h3 class="vcTitle" translate>{{valueCheck}}</h3>
-    <ul>
-      <li *ngFor="let i = index" translate>{{valueCheck}}Q.{{i}}</li>
-    </ul>
-    <textarea class="vcText" rows="5" cols="90"></textarea><br>
-    <select class="vcQ">
-      <option *ngFor="let selectScale of selectScales" [value]="selectScale.value">{{selectScale.display}}</option>
-    </select>
-    <p translate>weight</p>
-    <input class="vcWeight" type="text" value="1">
-    <br><br><br>
+    <!-- Title + further details-->
+    <div class="card" style="width: 85%; margin: auto">
+      <h3 class="vcTitle card-header" translate>{{valueCheck}}</h3>
+
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let i = index" class="list-group-item" translate>{{valueCheck}}Q.{{i}}</li>
+      </ul>
+
+      <!-- Input through user-->
+      <div class="card-footer text-muted">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label *ngFor="let selectScale of selectScales" class="btn btn-primary vcQ">
+            <input type="radio" name={{valueCheck}} [value]="selectScale.value" autocomplete="off"> {{selectScale.display}}
+          </label>
+        </div>
+
+        <span style="margin-left: 2em">
+          <td nowrap translate>weight</td>
+          <input class="vcWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
+        </span>
+        <br><br>
+
+        <textarea class="vcText" rows="4" style="width: 100%"></textarea><br>
+      </div>
+    </div>
+    <br>
   </div>
 </div>
+
+
 
 <button id="validate" type="submit" (click)= "value()">Submit</button>
 <button type="submit" (click)="savePDF()">Download PDF</button>

@@ -27,7 +27,6 @@ export class AppComponent {
   };
 
   valueCheck = true;
-
   valueChecks = [
     "CustNeed", "MarkOport", "Solution"
   ]
@@ -67,26 +66,33 @@ export class AppComponent {
     this.text.push("Score: " + this.score.toString())
   }
 
-  valCheckEval(){
+  valCheckEval() {
     if (this.valueCheck) {
       // Adding Value Check Title to PDF
       this.text.push(document.getElementById('vc').innerHTML);
 
       // Loop through Value Check Questions
       for (let i = 0; i < this.valueChecks.length; i++) {
+        // get weight of question
         let w = <HTMLInputElement>document.getElementsByClassName('vcWeight')[i];
         let weight = parseInt(w.value)
-        // if: Checks that question hasn't chosen not applicable, adds value of dropdown and increases counter
-        let vcDrop = <HTMLInputElement>document.getElementsByClassName('vcQ')[i];
-        if ((vcDrop.value) !== 'null') {
-          this.total += parseInt(vcDrop.value) * weight;
-          this.amount += weight;
+
+        // get radio button of question
+        for (let j = 0; j < this.selectScales.length; j++) {
+          let vcDrop =  <HTMLInputElement>document.getElementsByName(this.valueChecks[i])[j];
+          if (vcDrop.checked === true) {
+            // add to average
+            if ((vcDrop.value) !== 'null') {
+              this.total += parseInt(vcDrop.value) * weight;
+              this.amount += weight;
+          }
         }
-        // Appends PDF content with question, value and text
-        let vcTitle = <HTMLInputElement>document.getElementsByClassName('vcTitle')[i];
-        this.text.push(vcTitle.innerHTML + ": " + vcDrop.value);
-        let vcText = <HTMLInputElement>document.getElementsByClassName('vcText')[i];
-        this.text.push(vcText.value);
+          // Appends PDF content with question, value and text
+          let vcTitle = <HTMLInputElement>document.getElementsByClassName('vcTitle')[i];
+          this.text.push(vcTitle.innerHTML + ": " + vcDrop.value);
+          let vcText = <HTMLInputElement>document.getElementsByClassName('vcText')[i];
+          this.text.push(vcText.value);
+        }
       }
     }
   }
