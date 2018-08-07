@@ -30,19 +30,30 @@ export class AppComponent {
   valueChecks = [
     "CustNeed", "MarkOport", "Solution"
   ]
+  ffCheck = true;
+  ffCheckEnvis = [
+    "Energy", "Water", "Respect"
+  ];
 
   score: number;
   total: number;
   amount: number;
   text = [];
 
-  selectScales = [
+  scaleAbsolute = [
     {value: 'null', display: 'Not Applicable'},
     {value: '0', display: 'Weak'},
     {value: '50', display: 'Moderate'},
     {value: '100', display: 'Strong'},
     {value: '150', display: 'Outstanding'}
   ];
+  scaleRelative = [
+    {value: 'null', display: 'Not Applicable'},
+    {value: '0', display: 'Lower'},
+    {value: '50', display: 'Equal'},
+    {value: '100', display: 'Better'},
+    {value: '150', display: 'Outstanding'}
+  ]
 
   constructor(private translate: TranslateService) {
     translate.setDefaultLang('en');
@@ -52,7 +63,7 @@ export class AppComponent {
     this.translate.use(language);
   }
 
-  value() {
+  result() {
     // Reseting PDF content, variables used for calculations
     this.text = []
     this.total = 0;
@@ -78,7 +89,7 @@ export class AppComponent {
         let weight = parseInt(w.value)
 
         // get radio button of question
-        for (let j = 0; j < this.selectScales.length; j++) {
+        for (let j = 0; j < this.scaleAbsolute.length; j++) {
           let vcDrop =  <HTMLInputElement>document.getElementsByName(this.valueChecks[i])[j];
           if (vcDrop.checked === true) {
             // add to average
@@ -97,9 +108,50 @@ export class AppComponent {
     }
   }
 
+  ffCheckEval() {
+    if (this.ffCheck) {
+      // Adding Value Check Title to PDF
+      this.text.push(document.getElementById('ff').innerHTML);
+
+      // Loop through Value Check Questions
+      for (let i = 0; i < this.ffCheckEnvis.length; i++) {
+        // get weight of question
+        let w = <HTMLInputElement>document.getElementsByClassName('ffWeight')[i];
+        let weight = parseInt(w.value)
+
+        // get radio button of question
+        for (let j = 0; j < this.scaleAbsolute.length; j++) {
+          let vcDrop = <HTMLInputElement>document.getElementsByName(this.ffCheckEnvis[i])[j];
+          if (vcDrop.checked === true) {
+            // add to average
+            if ((vcDrop.value) !== 'null') {
+              this.total += parseInt(vcDrop.value) * weight;
+              this.amount += weight;
+            }
+          }
+          for (let j = 0; j < this.scaleRelative.length; j++) {
+            let vcDrop = <HTMLInputElement>document.getElementsByName(this.ffCheckEnvis[i])[j];
+            if (vcDrop.checked === true) {
+              // add to average
+              if ((vcDrop.value) !== 'null') {
+                this.total += parseInt(vcDrop.value) * weight;
+                this.amount += weight;
+              }
+            }
+            // Appends PDF content with question, value and text
+            let vcTitle = <HTMLInputElement>document.getElementsByClassName('vcTitle')[i];
+            this.text.push(vcTitle.innerHTML + ": " + vcDrop.value);
+            let vcText = <HTMLInputElement>document.getElementsByClassName('vcText')[i];
+            this.text.push(vcText.value);
+          }
+        }
+      }
+    }
+  }
+
   // used to create PDF and make it download
   savePDF(){
-    this.value();
+    this.result();
     const doc = new jsPDF();
     doc.text(this.text,10,10);
     doc.save("prototyp.pdf");

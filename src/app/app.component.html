@@ -1,6 +1,7 @@
 <h1 translate>FFTitle</h1>
 <h3 translate>Select</h3>
 <input type="checkbox" [(ngModel)]="valueCheck" name="valCheck" value="Value Check" checked="valueCheck"> Value Check<br>
+<input type="checkbox" [(ngModel)]="futureFit" name="futureFit" value="Future Fit" checked="futureFit"> Future Fit Check<br>
 
 <!-- Value Check Questionnaire -->
 <div *ngIf="valueCheck">
@@ -11,15 +12,14 @@
     <div class="card" style="width: 85%; margin: auto">
       <h3 class="vcTitle card-header" translate>{{valueCheck}}</h3>
 
-      <ul class="list-group list-group-flush">
-        <li *ngFor="let i = index" class="list-group-item" translate>{{valueCheck}}Q.{{i}}</li>
-      </ul>
+      <p translate>{{valueCheck}}Q</p>
+
 
       <!-- Input through user-->
       <div class="card-footer text-muted">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <label *ngFor="let selectScale of selectScales" class="btn btn-primary vcQ">
-            <input type="radio" name={{valueCheck}} [value]="selectScale.value" autocomplete="off"> {{selectScale.display}}
+          <label *ngFor="let absolute of scaleAbsolute" class="btn btn-primary vcQ">
+            <input type="radio" name={{valueCheck}} [value]="absolute.value" autocomplete="off"> {{absolute.display}}
           </label>
         </div>
 
@@ -36,9 +36,61 @@
   </div>
 </div>
 
+<!-- Future Fit Check Questionnaire -->
+<div *ngIf="ffCheck">
+  <h2 id="ff">Future Fit Check</h2>
+  <h3 translate>Envi</h3>
+  <!-- Loop through questions -->
+  <div *ngFor="let ffCheckEnvi of ffCheckEnvis">
+    <!-- Title + further details-->
+    <div class="card" style="width: 85%; margin: auto">
+      <h3 class="ffTitle card-header" translate>{{ffCheckEnvi}}</h3>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            Benchmark Check
+          </div>
+          <div class="col-sm">
+            Market Check
+          </div>
+        </div>
+      </div>
+      <!-- Input through user-->
+      <div class="card-footer text-muted">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label *ngFor="let absolute of scaleAbsolute" class="btn btn-primary ffQB">
+                  <input type="radio" name={{ffCheckEnvi}} [value]="absolute.value" autocomplete="off"> {{absolute.display}}
+                </label>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label *ngFor="let relative of scaleRelative" class="btn btn-primary ffQM">
+                  <input type="radio" name={{ffCheckEnvi}} [value]="relative.value" autocomplete="off"> {{relative.display}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <span style="margin-left: 2em">
+          <td nowrap translate>weight</td>
+          <input class="ffWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
+        </span>
+        <br><br>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
 
 
-<button id="validate" type="submit" (click)= "value()">Submit</button>
+<button id="validate" type="submit" (click)= "result()">Submit</button>
 <button type="submit" (click)="savePDF()">Download PDF</button>
 <p>Average: {{score}}%</p>
 <br><br>
