@@ -2,10 +2,25 @@
   "FFTitle": "FFBCV Angular prototype",
   "Select": "Select Questionnaires",
   "weight": "Weight:",
+
   "CustNeed": "Customer Needs",
   "CustNeedQ": "To what extent is the customer and the customer's significant unmet need precisely understood and described? To what extent is the understanding of the customer's significant need related to his/her future fitness? To what extent are there systems, processes, feedback loops in place or planned which support understanding the evolution of customer's significant needs?",
   "MarkOport": "Market Opportunity",
+  "MarkOportQ": "To what extent is the significant market opportunity precisely understood and described? To what extent is the significant market opportunity (on which the solution builds on) intended to support the creation of a future fit market? To what extent are there systems, processes, feedback loops in place or planned which support understanding the evolution of significant market opportunities?",
   "Solution": "Solution",
+  "SolutionQ": "To what extent does the solution fully meet the potential of the described customer and the significant customer's need? To what extent does the solution fully meet the potential of the described market opportunity (incl. price)? To what extent are there systems, processes, feedback loops in place or planned which support the development of the solution?",
+
+  "Energy": "Energy is from renewable sources (FF01)",
+  "Water": "Water is used in an environmentally responsible and socially equitable way (FF02)",
+  "Respect": "Natural sources are managed to respect welfare of ecosystems, people and animals (FF03)",
+
+  "directQ": "Does the solution increase the degree of future fitness for at least one of the stakeholders (environment, customer, employee, supplier, community, society) and does it at the same time not deteriorate the degree of future fitness of one or more of the stakeholders?",
+  "platformQ": "Can the solution be improved (not repaired) with reasonable return on investment (cost of improvement, upgrade and/or reuse are lower than cost of replacement)?",
+  "brandRep": "Better Brand Reputation",
+  "brandRepQ": "To what extent does the planned or to be updated solution contribute to a better brand reputation (of the organization or the targeted market brand)?",
+  "opExp": "Saving Operating Expenses",
+  "opExpQ": "To what extent does the planned or to be updated solution contribute to saving operating expenses?",
+
   "Title": "Translation example",
   "Intro": "Hello I am {{name}}, I am {{age}} years old.",
   "Startpage": {

@@ -1,94 +1,200 @@
 <h1 translate>FFTitle</h1>
 <h3 translate>Select</h3>
-<input type="checkbox" [(ngModel)]="valueCheck" name="valCheck" value="Value Check" checked="valueCheck"> Value Check<br>
-<input type="checkbox" [(ngModel)]="futureFit" name="futureFit" value="Future Fit" checked="futureFit"> Future Fit Check<br>
+<input type="checkbox" [(ngModel)]="valueCheck" name="valCheck" value="Value Check"> Value Check<br>
+<input type="checkbox" [(ngModel)]="ffCheck" name="futureFit" value="Future Fit"> Future Fit Check<br>
+<input type="checkbox" [(ngModel)]="bpCheck" name="busPot" value="Business Potential"> Business Potential Check<br>
 
 <!-- Value Check Questionnaire -->
-<div *ngIf="valueCheck">
-<h2 id="vc">Value Check</h2>
+<div *ngIf="valueCheck"> <!-- toggles Questionnaire, takes input from checkbox at the top-->
+<h2 id="vc">Value Check</h2> <!-- Hard coded title -->
   <!-- Loop through questions -->
   <div *ngFor="let valueCheck of valueChecks">
-    <!-- Title + further details-->
-    <div class="card" style="width: 85%; margin: auto">
-      <h3 class="vcTitle card-header" translate>{{valueCheck}}</h3>
+    <div class="card" style="width: 85%; margin: auto"> <!-- Creates box (called card)-->
 
-      <p translate>{{valueCheck}}Q</p>
+      <!-- Card Header = upper grey area, Question Topic Displayed -->
+      <h4 class="vcTitle card-header" translate>{{valueCheck}}</h4>
+      <p translate>{{valueCheck}}Q</p> <!-- Further Questions belonging to the Topic -->
 
-
-      <!-- Input through user-->
-      <div class="card-footer text-muted">
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <label *ngFor="let absolute of scaleAbsolute" class="btn btn-primary vcQ">
-            <input type="radio" name={{valueCheck}} [value]="absolute.value" autocomplete="off"> {{absolute.display}}
-          </label>
+      <div class="card-footer text-muted"> <!-- Card footer = lower grey area, User Input goes here -->
+        <!-- Footer split up in two columns. 1st contains rating and weight, 2nd textarea -->
+        <div class="row">
+          <div class="col-">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <!-- Radio Buttons -->
+              <label *ngFor="let absolute of scaleAbsolute" class="btn btn-primary btn-sm vcQ">
+                <input type="radio" name={{valueCheck}} [value]="absolute.value" autocomplete="off"> {{absolute.display}}
+              </label>
+            </div>
+            <br><br>
+            <!-- Weight of question -->
+            <span>
+              <td nowrap translate>weight</td>
+              <input class="vcWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
+            </span>
+          </div>
+          <!-- Text input -->
+          <div class="col-sm">
+            <textarea class="vcText" rows="3" style="width: 100%"></textarea>
+          </div>
         </div>
-
-        <span style="margin-left: 2em">
-          <td nowrap translate>weight</td>
-          <input class="vcWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
-        </span>
-        <br><br>
-
-        <textarea class="vcText" rows="4" style="width: 100%"></textarea><br>
       </div>
-    </div>
-    <br>
+    </div><br>
   </div>
 </div>
 
 <!-- Future Fit Check Questionnaire -->
 <div *ngIf="ffCheck">
   <h2 id="ff">Future Fit Check</h2>
-  <h3 translate>Envi</h3>
-  <!-- Loop through questions -->
-  <div *ngFor="let ffCheckEnvi of ffCheckEnvis">
-    <!-- Title + further details-->
-    <div class="card" style="width: 85%; margin: auto">
-      <h3 class="ffTitle card-header" translate>{{ffCheckEnvi}}</h3>
 
+  <div class="card" style="width: 85%; margin: auto">
+  <h3 class="ffTitle card-header" translate>Upstream Activities</h3>
+
+  <div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <h6>Benchmark Check</h6>
+    </div>
+    <div class="col-sm">
+      <h6>Market Check</h6>
+    </div>
+  </div>
+  </div>
+
+  <!-- Loop through questions -->
+  <div *ngFor="let ffCheckUp of ffCheckUps">
+    <!-- Title + further details-->
+    <hr>
       <div class="container">
         <div class="row">
           <div class="col-sm">
-            Benchmark Check
+            <h5 class="ffTitle" translate>{{ffCheckUp}}</h5>
           </div>
-          <div class="col-sm">
-            Market Check
+          <div class="col-">
+            <span style="margin-right: 2em">
+              <td nowrap translate>weight</td>
+              <input class="ffWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
+            </span>
           </div>
         </div>
       </div>
       <!-- Input through user-->
-      <div class="card-footer text-muted">
         <div class="container">
           <div class="row">
             <div class="col-sm">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label *ngFor="let absolute of scaleAbsolute" class="btn btn-primary ffQB">
-                  <input type="radio" name={{ffCheckEnvi}} [value]="absolute.value" autocomplete="off"> {{absolute.display}}
+                <label *ngFor="let absolute of scaleAbsolute" class="btn btn-primary btn-sm ffQB">
+                  <input type="radio" name="{{ffCheckUp}}B" [value]="absolute.value" autocomplete="off"> {{absolute.display}}
                 </label>
               </div>
             </div>
             <div class="col-sm">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label *ngFor="let relative of scaleRelative" class="btn btn-primary ffQM">
-                  <input type="radio" name={{ffCheckEnvi}} [value]="relative.value" autocomplete="off"> {{relative.display}}
+                <label *ngFor="let relative of scaleRelative" class="btn btn-primary btn-sm ffQM">
+                  <input type="radio" name="{{ffCheckUp}}M" [value]="relative.value" autocomplete="off"> {{relative.display}}
                 </label>
               </div>
             </div>
           </div>
-        </div>
-
-        <br>
-        <span style="margin-left: 2em">
-          <td nowrap translate>weight</td>
-          <input class="ffWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
-        </span>
-        <br><br>
-      </div>
+        </div><br>
     </div>
-    <br>
+    <div class="card-footer text-muted">
+      <textarea class="ffText" rows="3" style="width: 100%"></textarea>
+    </div>
   </div>
 </div>
 
+<!-- Business Potential Check Questionnaire -->
+<div *ngIf="bpCheck">
+  <h2 id="bp">Business Potential Check</h2>
+  <h3>Strategic Positioning</h3>
+
+  <div class="card" style="width: 85%; margin: auto">
+    <h4 class="vcTitle card-header" translate>Right Direction</h4>
+    <p translate>directQ</p>
+    <!-- Input through user-->
+    <div class="card-footer text-muted">
+      <div class="row">
+        <div class="col-">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons" style="margin-left: 1.5em">
+            <label class="btn btn-primary btn-sm bpQ">
+              <input type="radio" name="1" value="0" autocomplete="off"> Yes
+            </label>
+            <label class="btn btn-primary btn-sm bpQ">
+              <input type="radio" name="1" value="-50" autocomplete="off"> No
+            </label>
+          </div>
+          <br><br>
+          <span>
+              <td nowrap translate>weight</td>
+              <input class="bpWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
+            </span>
+        </div>
+        <div class="col-sm">
+          <textarea class="bpText" rows="3" style="width: 100%"></textarea>
+        </div>
+      </div>
+    </div>
+  </div><br>
+
+  <div class="card" style="width: 85%; margin: auto">
+    <h4 class="vcTitle card-header" translate>Flexible Platform</h4>
+    <p translate>platformQ</p>
+    <!-- Input through user-->
+    <div class="card-footer text-muted">
+      <div class="row">
+        <div class="col-">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons" style="margin-left: 1.5em">
+            <label class="btn btn-primary btn-sm bpQ">
+              <input type="radio" name="1" value="0" autocomplete="off"> Yes
+            </label>
+            <label class="btn btn-primary btn-sm bpQ">
+              <input type="radio" name="1" value="-50" autocomplete="off"> No
+            </label>
+          </div>
+          <br><br>
+          <span>
+              <td nowrap translate>weight</td>
+              <input class="bpWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
+            </span>
+        </div>
+        <div class="col-sm">
+          <textarea class="bpText" rows="3" style="width: 100%"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Return on Investment</h3>
+  <!-- Loop through questions -->
+  <div *ngFor="let bpCheck of bpChecks">
+    <!-- Title + further details-->
+    <div class="card" style="width: 85%; margin: auto">
+      <h4 class="bpTitle card-header" translate>{{bpCheck}}</h4>
+      <p translate>{{bpCheck}}Q</p>
+
+      <!-- Input through user-->
+      <div class="card-footer text-muted">
+        <div class="row">
+          <div class="col-">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label *ngFor="let absolute of scaleAbsolute" class="btn btn-primary btn-sm bpQ">
+                <input type="radio" name={{valueCheck}} [value]="absolute.value" autocomplete="off"> {{absolute.display}}
+              </label>
+            </div>
+            <br><br>
+            <span>
+              <td nowrap translate>weight</td>
+              <input class="bpWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
+            </span>
+          </div>
+          <div class="col-sm">
+            <textarea class="bpText" rows="3" style="width: 100%"></textarea>
+          </div>
+        </div>
+      </div>
+    </div><br>
+  </div>
+</div>
 
 <button id="validate" type="submit" (click)= "result()">Submit</button>
 <button type="submit" (click)="savePDF()">Download PDF</button>
