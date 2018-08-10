@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as jsPDF from 'jspdf';
 
-
 @Pipe({name: 'keys'})
 export class KeysPipe implements PipeTransform {
   transform(value, args:string[]) : any {
@@ -20,39 +19,34 @@ export class KeysPipe implements PipeTransform {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   user = {
     name: 'Arthur',
     age: 42
   };
-
+  // Variables for Value Check, tag used: vc
   valueCheck = true; // used to (de)activate questionnaire (with checkbox)
-  valuePoints = 0; // accumulation of points in value questions
-  valueAmount = 0; // # of questions (for later calc. average)
-  valueRank = 0;   // Final average
-  valueChecks = [  // All Topic Tags
+  vcs = [  // All Topic Tags
     "CustNeed", "MarkOport", "Solution"
   ];
+  valueRank = 0; // Final average of value check
 
   ffCheck = true;
   ffCheckUps = [
     "Energy", "Water", "Respect"
   ];
-  ffBenchPoints = 0;
-  ffBenchAmount = 0;
-  ffBenchRank = 0;
-  ffMarketPoints = 0;
-  ffMarketAmount = 0;
-  ffMarketRank = 0;
-  ffRank = 0;
+  ffBenchRank = 0; ffMarketRank = 0; ffRank = 0;
 
   bpCheck = true;
-  bpChecks = ["brandRep", "opExp"];
-
+  bps = [
+    "brandRep", "opExp"
+  ];
+  bpRank = 0;
 
   score: number;
-  total: number;
-  amount: number;
+  total: number; // To be removed
+  amount: number;// To be removed
   text = [];
 
   scaleAbsolute = [
@@ -83,45 +77,57 @@ export class AppComponent {
     this.text = []
     this.total = 0;
     this.amount = 0;
+    this.bpRank = 0;
 
     // get input from each check
     this.valCheckEval();
     this.ffCheckEval();
+    this.busPotCheckEval();
 
     // Calculations
     this.score = this.total / this.amount;
     this.text.push("Score: " + this.score.toString())
   }
 
+  getWeight(tag, i) { // gets weight of a question
+    let w = <HTMLInputElement>document.getElementsByClassName(tag + 'Weight')[i];
+    let weight = parseInt(w.value);
+    return weight;
+  }
+
+  getAverage(tag, questionnaire, addOn = '') {
+    let points = 0; let amount = 0; // used to sum up points and count
+    for (let i = 0; i < questionnaire.length; i++) {
+      let weight = this.getWeight(tag, i);
+      for (let j = 0; j < this.scaleAbsolute.length; j++) { // goes through all buttons and retrieves checked one
+        let radio = <HTMLInputElement>document.getElementsByName(questionnaire[i] + addOn)[j];
+        if (radio.checked === true) {
+          // add to average
+          if ((radio.value) !== 'null') {
+            points += parseInt(radio.value) * weight;
+            amount += weight;
+          }
+        }
+      }
+    }
+    return points / amount;
+  }
+
+
   valCheckEval() {
     if (this.valueCheck) {
       // Adding Value Check Title to PDF
       this.text.push(document.getElementById('vc').innerHTML);
+      this.valueRank = this.getAverage('vc', this.vcs);
 
-      // Loop through Value Check Questions
-      for (let i = 0; i < this.valueChecks.length; i++) {
-        // get weight of question
-        let w = <HTMLInputElement>document.getElementsByClassName('vcWeight')[i];
-        let weight = parseInt(w.value)
-
-        // get radio button of question
-        for (let j = 0; j < this.scaleAbsolute.length; j++) { // goes through all buttons and retrieves checked one
-          let vcRadio =  <HTMLInputElement>document.getElementsByName(this.valueChecks[i])[j];
-          if (vcRadio.checked === true) {
-            // add to average
-            if ((vcRadio.value) !== 'null') {
-              this.valuePoints += parseInt(vcRadio.value) * weight;
-              this.valueAmount += weight;
-          }
-        }
-          // Appends PDF content with question, value and text
-          let vcTitle = <HTMLInputElement>document.getElementsByClassName('vcTitle')[i];
-          this.text.push(vcTitle.innerHTML + ": " + vcRadio.value);
-          let vcText = <HTMLInputElement>document.getElementsByClassName('vcText')[i];
-          this.text.push(vcText.value);
-        }
-      }
-      this.valueRank = this.valuePoints / this.valueAmount;
+      /*
+      // Appends PDF content with question, value and text
+      let vcTitle = <HTMLInputElement>document.getElementsByClassName('vcTitle')[i];
+      this.text.push(vcTitle.innerHTML + ": " + vcRadio.value);
+      let vcText = <HTMLInputElement>document.getElementsByClassName('vcText')[i];
+      this.text.push(vcText.value);
+      */
+      console.log(this.valueRank);
     }
   }
 
@@ -131,50 +137,37 @@ export class AppComponent {
       this.text.push(document.getElementById('ff').innerHTML);
 
       // Loop through Value Check Questions
-      for (let i = 0; i < this.ffCheckUps.length; i++) {
-        // get weight of question
-        let w = <HTMLInputElement>document.getElementsByClassName('ffWeight')[i];
-        let weight = parseInt(w.value)
+      this.ffBenchRank = this.getAverage('ff', this.ffCheckUps, 'B');
+      this.ffMarketRank = this.getAverage('ff', this.ffCheckUps, 'M');
 
-        // get radio button of Bench
-        for (let j = 0; j < this.scaleAbsolute.length; j++) {
-          let ffRadio = <HTMLInputElement>document.getElementsByName(this.ffCheckUps[i] + "B")[j];
-          if (ffRadio.checked === true) {
-            // add to average
-            if ((ffRadio.value) !== 'null') {
-              this.ffBenchPoints += parseInt(ffRadio.value) * weight;
-              this.ffBenchAmount += weight;
-            }
-          }
-        }
-        // get radio button of Market
-        for (let j = 0; j < this.scaleRelative.length; j++) {
-          let ffRadio = <HTMLInputElement>document.getElementsByName(this.ffCheckUps[i] + "M")[j];
-          if (ffRadio.checked === true) {
-            // add to average
-            if ((ffRadio.value) !== 'null') {
-              this.ffMarketPoints += parseInt(ffRadio.value) * weight;
-              this.ffMarketAmount += weight;
-            }
-          }
-          this.ffRank = ((this.ffBenchPoints / this.ffBenchAmount) + (this.ffMarketPoints / this.ffMarketAmount)) / 2;
-          console.log(this.ffRank);
-          // Appends PDF content with question, value and text
+      console.log(this.ffMarketRank);
+      console.log(this.ffBenchRank);
 
-          let vcTitle = <HTMLInputElement>document.getElementsByClassName('ffTitle')[i];
-          this.text.push(vcTitle.innerHTML + ": " /*+ vcDrop.value*/);
-          /*
-          let vcText = <HTMLInputElement>document.getElementsByClassName('ffText')[i];
-          this.text.push(vcText.value);
-          */
-          }
-        }
+      // Appends PDF content with question, value and text
+      /*
+      let vcTitle = <HTMLInputElement>document.getElementsByClassName('ffTitle')[i];
+      this.text.push(vcTitle.innerHTML + ": " /*+ vcDrop.value);*/
+      /*
+      let vcText = <HTMLInputElement>document.getElementsByClassName('ffText')[i];
+      this.text.push(vcText.value);
       }
+    }*/
     }
-
+  }
 
   busPotCheckEval() {
-
+    if(this.bpCheck) {
+      this.bpRank = this.getAverage('bp', this.bps);
+      let direct = <HTMLInputElement>document.getElementsByName('1')[1];
+      if (direct.checked){
+        this.bpRank += parseInt(direct.value);
+      }
+      let platform = <HTMLInputElement>document.getElementsByName('2')[1];
+      if (platform.checked){
+        this.bpRank += parseInt(platform.value);
+      }
+    }
+    console.log(this.bpRank);
   }
 
   // used to create PDF and make it download

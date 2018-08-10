@@ -13,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6247257">
+    <splitter split-orientation="horizontal" split-proportion="0.49670812">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="de.json" pinned="false" current-in-tab="false">
@@ -37,12 +37,17 @@
           <file leaf-file-name="app.component.ts" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/app.component.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="51">
-                  <caret line="3" selection-start-line="3" selection-end-line="3" />
+                <state relative-caret-position="582">
+                  <caret line="162" column="46" lean-forward="true" selection-start-line="162" selection-start-column="46" selection-end-line="162" selection-end-column="46" />
                   <folding>
+                    <element signature="n#KeysPipe#0" />
+                    <element signature="e#434#536#0" />
                     <element signature="e#575#612#0" />
                     <element signature="e#912#1122#0" />
                     <element signature="e#1142#1350#0" />
+                    <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
+                    <element signature="n#!!block;n#switchLanguage#0;n#AppComponent#0" />
+                    <element signature="n#!!block;n#ffCheckEval#0;n#AppComponent#0" />
                   </folding>
                 </state>
               </provider>
@@ -55,19 +60,17 @@
           <file leaf-file-name="app.component.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/app.component.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="357">
-                  <caret line="92" column="59" selection-start-line="92" selection-start-column="59" selection-end-line="92" selection-end-column="59" />
+                <state relative-caret-position="2363">
+                  <caret line="147" column="41" selection-start-line="147" selection-start-column="41" selection-end-line="147" selection-end-column="41" />
                   <folding>
-                    <element signature="n#div#0;n#!!top" />
                     <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#input#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#textarea#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                    <element signature="n#div#0;n#div#0;n#div#1;n#!!top" />
                     <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#input#0;n#span#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+                    <element signature="n#div#2;n#div#0;n#div#1;n#!!top" />
                     <element signature="n#style#0;n#textarea#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-                    <element signature="n#div#2;n#!!top" />
                     <element signature="n#style#0;n#div#0;n#div#2;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#input#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
@@ -92,6 +95,7 @@
       <find>valueC</find>
       <find>vc</find>
       <find>sele</find>
+      <find>res</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -114,7 +118,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-10" />
     <option name="width" value="1692" />
     <option name="height" value="1756" />
@@ -223,15 +227,15 @@
       <workItem from="1533194244772" duration="1202000" />
       <workItem from="1533221096498" duration="1024000" />
       <workItem from="1533222152055" duration="642000" />
-      <workItem from="1533284379863" duration="43085000" />
+      <workItem from="1533284379863" duration="59810000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77739000" />
+    <option name="totallyTimeSpent" value="94464000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
+    <frame x="-6" y="-6" width="1381" height="885" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TypeScript" order="5" />
@@ -280,6 +284,11 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/assets/i18n/en.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -309,9 +318,14 @@
         <state relative-caret-position="969">
           <caret line="60" selection-start-line="60" selection-end-line="60" />
           <folding>
+            <element signature="n#KeysPipe#0" />
+            <element signature="e#434#536#0" />
             <element signature="e#575#612#0" />
             <element signature="e#912#1122#0" />
             <element signature="e#1142#1350#0" />
+            <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#switchLanguage#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#ffCheckEval#0;n#AppComponent#0" />
           </folding>
         </state>
       </provider>
@@ -349,9 +363,14 @@
         <state relative-caret-position="459">
           <caret line="30" column="12" lean-forward="true" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
           <folding>
+            <element signature="n#KeysPipe#0" />
+            <element signature="e#434#536#0" />
             <element signature="e#575#612#0" />
             <element signature="e#912#1122#0" />
             <element signature="e#1142#1350#0" />
+            <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#switchLanguage#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#ffCheckEval#0;n#AppComponent#0" />
           </folding>
         </state>
       </provider>
@@ -425,9 +444,14 @@
         <state relative-caret-position="561">
           <caret line="60" selection-start-line="60" selection-end-line="60" />
           <folding>
+            <element signature="n#KeysPipe#0" />
+            <element signature="e#434#536#0" />
             <element signature="e#575#612#0" />
             <element signature="e#912#1122#0" />
             <element signature="e#1142#1350#0" />
+            <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#switchLanguage#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#ffCheckEval#0;n#AppComponent#0" />
           </folding>
         </state>
       </provider>
@@ -444,9 +468,14 @@
         <state relative-caret-position="459">
           <caret line="30" column="12" lean-forward="true" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
           <folding>
+            <element signature="n#KeysPipe#0" />
+            <element signature="e#434#536#0" />
             <element signature="e#575#612#0" />
             <element signature="e#912#1122#0" />
             <element signature="e#1142#1350#0" />
+            <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#switchLanguage#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#ffCheckEval#0;n#AppComponent#0" />
           </folding>
         </state>
       </provider>
@@ -520,9 +549,14 @@
         <state relative-caret-position="448">
           <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
           <folding>
+            <element signature="n#KeysPipe#0" />
+            <element signature="e#434#536#0" />
             <element signature="e#575#612#0" />
             <element signature="e#912#1122#0" />
             <element signature="e#1142#1350#0" />
+            <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#switchLanguage#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#ffCheckEval#0;n#AppComponent#0" />
           </folding>
         </state>
       </provider>
@@ -539,9 +573,14 @@
         <state relative-caret-position="459">
           <caret line="30" column="12" lean-forward="true" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
           <folding>
+            <element signature="n#KeysPipe#0" />
+            <element signature="e#434#536#0" />
             <element signature="e#575#612#0" />
             <element signature="e#912#1122#0" />
             <element signature="e#1142#1350#0" />
+            <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#switchLanguage#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#ffCheckEval#0;n#AppComponent#0" />
           </folding>
         </state>
       </provider>
@@ -617,19 +656,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="92" column="59" selection-start-line="92" selection-start-column="59" selection-end-line="92" selection-end-column="59" />
+        <state relative-caret-position="2363">
+          <caret line="147" column="41" selection-start-line="147" selection-start-column="41" selection-end-line="147" selection-end-column="41" />
           <folding>
-            <element signature="n#div#0;n#!!top" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#textarea#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#0;n#div#1;n#!!top" />
             <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#span#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#div#2;n#div#0;n#div#1;n#!!top" />
             <element signature="n#style#0;n#textarea#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#!!top" />
             <element signature="n#style#0;n#div#0;n#div#2;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
@@ -646,12 +683,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="582">
+          <caret line="162" column="46" lean-forward="true" selection-start-line="162" selection-start-column="46" selection-end-line="162" selection-end-column="46" />
           <folding>
+            <element signature="n#KeysPipe#0" />
+            <element signature="e#434#536#0" />
             <element signature="e#575#612#0" />
             <element signature="e#912#1122#0" />
             <element signature="e#1142#1350#0" />
+            <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#switchLanguage#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#ffCheckEval#0;n#AppComponent#0" />
           </folding>
         </state>
       </provider>

@@ -8,7 +8,7 @@
 <div *ngIf="valueCheck"> <!-- toggles Questionnaire, takes input from checkbox at the top-->
 <h2 id="vc">Value Check</h2> <!-- Hard coded title -->
   <!-- Loop through questions -->
-  <div *ngFor="let valueCheck of valueChecks">
+  <div *ngFor="let valueCheck of vcs">
     <div class="card" style="width: 85%; margin: auto"> <!-- Creates box (called card)-->
 
       <!-- Card Header = upper grey area, Question Topic Displayed -->
@@ -109,7 +109,7 @@
   <h3>Strategic Positioning</h3>
 
   <div class="card" style="width: 85%; margin: auto">
-    <h4 class="vcTitle card-header" translate>Right Direction</h4>
+    <h4 class="bpTitle card-header" translate>Right Direction</h4>
     <p translate>directQ</p>
     <!-- Input through user-->
     <div class="card-footer text-muted">
@@ -126,7 +126,7 @@
           <br><br>
           <span>
               <td nowrap translate>weight</td>
-              <input class="bpWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
+              <input class="bp1Weight" type="text" value="1" style="width: 3em; margin-left: 1em">
             </span>
         </div>
         <div class="col-sm">
@@ -137,7 +137,7 @@
   </div><br>
 
   <div class="card" style="width: 85%; margin: auto">
-    <h4 class="vcTitle card-header" translate>Flexible Platform</h4>
+    <h4 class="bpTitle card-header" translate>Flexible Platform</h4>
     <p translate>platformQ</p>
     <!-- Input through user-->
     <div class="card-footer text-muted">
@@ -145,16 +145,16 @@
         <div class="col-">
           <div class="btn-group btn-group-toggle" data-toggle="buttons" style="margin-left: 1.5em">
             <label class="btn btn-primary btn-sm bpQ">
-              <input type="radio" name="1" value="0" autocomplete="off"> Yes
+              <input type="radio" name="2" value="0" autocomplete="off"> Yes
             </label>
             <label class="btn btn-primary btn-sm bpQ">
-              <input type="radio" name="1" value="-50" autocomplete="off"> No
+              <input type="radio" name="2" value="-50" autocomplete="off"> No
             </label>
           </div>
           <br><br>
           <span>
               <td nowrap translate>weight</td>
-              <input class="bpWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
+              <input class="bp2Weight" type="text" value="1" style="width: 3em; margin-left: 1em">
             </span>
         </div>
         <div class="col-sm">
@@ -166,7 +166,7 @@
 
   <h3>Return on Investment</h3>
   <!-- Loop through questions -->
-  <div *ngFor="let bpCheck of bpChecks">
+  <div *ngFor="let bpCheck of bps">
     <!-- Title + further details-->
     <div class="card" style="width: 85%; margin: auto">
       <h4 class="bpTitle card-header" translate>{{bpCheck}}</h4>
@@ -178,7 +178,7 @@
           <div class="col-">
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
               <label *ngFor="let absolute of scaleAbsolute" class="btn btn-primary btn-sm bpQ">
-                <input type="radio" name={{valueCheck}} [value]="absolute.value" autocomplete="off"> {{absolute.display}}
+                <input type="radio" name={{bpCheck}} [value]="absolute.value" autocomplete="off"> {{absolute.display}}
               </label>
             </div>
             <br><br>
