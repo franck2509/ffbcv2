@@ -32,12 +32,14 @@ export class AppComponent {
   ];
   valueRank = 0; // Final average of value check
 
+  // Variables for Future Fit Check, tag used: ff
   ffCheck = true;
   ffCheckUps = [
     "Energy", "Water", "Respect"
   ];
   ffBenchRank = 0; ffMarketRank = 0; ffRank = 0;
 
+  // Variables for Business Potential Check, tag used: bp
   bpCheck = true;
   bps = [
     "brandRep", "opExp"
@@ -45,9 +47,7 @@ export class AppComponent {
   bpRank = 0;
 
   score: number;
-  total: number; // To be removed
-  amount: number;// To be removed
-  text = [];
+  text = []; // used for PDF file, is on hold
 
   scaleAbsolute = [
     {value: 'null', display: 'Not Applicable'},
@@ -62,7 +62,7 @@ export class AppComponent {
     {value: '50', display: 'Equal'},
     {value: '100', display: 'Better'},
     {value: '150', display: 'Outstanding'}
-  ]
+  ];
 
   constructor(private translate: TranslateService) {
     translate.setDefaultLang('en');
@@ -74,31 +74,35 @@ export class AppComponent {
 
   result() {
     // Reseting PDF content, variables used for calculations
-    this.text = []
-    this.total = 0;
-    this.amount = 0;
-    this.bpRank = 0;
+    this.reset()
 
-    // get input from each check
+    // get calculations from each check
     this.valCheckEval();
     this.ffCheckEval();
     this.busPotCheckEval();
 
-    // Calculations
-    this.score = this.total / this.amount;
+    // todo Final Calculations
     this.text.push("Score: " + this.score.toString())
   }
 
+  reset() {
+    this.text = []; this.valueRank = 0; this.ffMarketRank = 0; this.ffBenchRank = 0; this.ffRank = 0; this.bpRank = 0;
+  }
+
   getWeight(tag, i) { // gets weight of a question
+    // 2 steps for getting the value due to strange bug, some sort of workaround used
     let w = <HTMLInputElement>document.getElementsByClassName(tag + 'Weight')[i];
     let weight = parseInt(w.value);
     return weight;
   }
 
+  // calculates average of a questionnaire
   getAverage(tag, questionnaire, addOn = '') {
     let points = 0; let amount = 0; // used to sum up points and count
+    // loops through all questions (tags) of questionnaire
     for (let i = 0; i < questionnaire.length; i++) {
       let weight = this.getWeight(tag, i);
+      // loop through radio buttons to get the activated one
       for (let j = 0; j < this.scaleAbsolute.length; j++) { // goes through all buttons and retrieves checked one
         let radio = <HTMLInputElement>document.getElementsByName(questionnaire[i] + addOn)[j];
         if (radio.checked === true) {
@@ -113,8 +117,7 @@ export class AppComponent {
     return points / amount;
   }
 
-
-  valCheckEval() {
+  valCheckEval() { // takes necessary steps to get the average
     if (this.valueCheck) {
       // Adding Value Check Title to PDF
       this.text.push(document.getElementById('vc').innerHTML);
@@ -158,6 +161,7 @@ export class AppComponent {
   busPotCheckEval() {
     if(this.bpCheck) {
       this.bpRank = this.getAverage('bp', this.bps);
+      // first 2 questions hardcoded
       let direct = <HTMLInputElement>document.getElementsByName('1')[1];
       if (direct.checked){
         this.bpRank += parseInt(direct.value);

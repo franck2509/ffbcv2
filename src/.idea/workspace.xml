@@ -37,8 +37,8 @@
           <file leaf-file-name="app.component.ts" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/app.component.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="582">
-                  <caret line="162" column="46" lean-forward="true" selection-start-line="162" selection-start-column="46" selection-end-line="162" selection-end-column="46" />
+                <state relative-caret-position="884">
+                  <caret line="163" column="36" selection-start-line="163" selection-start-column="36" selection-end-line="163" selection-end-column="36" />
                   <folding>
                     <element signature="n#KeysPipe#0" />
                     <element signature="e#434#536#0" />
@@ -47,7 +47,7 @@
                     <element signature="e#1142#1350#0" />
                     <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
                     <element signature="n#!!block;n#switchLanguage#0;n#AppComponent#0" />
-                    <element signature="n#!!block;n#ffCheckEval#0;n#AppComponent#0" />
+                    <element signature="n#!!block;n#reset#0;n#AppComponent#0" />
                   </folding>
                 </state>
               </provider>
@@ -60,7 +60,7 @@
           <file leaf-file-name="app.component.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/app.component.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2363">
+                <state relative-caret-position="2465">
                   <caret line="147" column="41" selection-start-line="147" selection-start-column="41" selection-end-line="147" selection-end-column="41" />
                   <folding>
                     <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -96,6 +96,7 @@
       <find>vc</find>
       <find>sele</find>
       <find>res</find>
+      <find>int</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -118,7 +119,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="width" value="1692" />
     <option name="height" value="1756" />
@@ -227,15 +228,15 @@
       <workItem from="1533194244772" duration="1202000" />
       <workItem from="1533221096498" duration="1024000" />
       <workItem from="1533222152055" duration="642000" />
-      <workItem from="1533284379863" duration="59810000" />
+      <workItem from="1533284379863" duration="61378000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94464000" />
+    <option name="totallyTimeSpent" value="96032000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1381" height="885" extended-state="7" />
+    <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TypeScript" order="5" />
@@ -325,7 +326,7 @@
             <element signature="e#1142#1350#0" />
             <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
             <element signature="n#!!block;n#switchLanguage#0;n#AppComponent#0" />
-            <element signature="n#!!block;n#ffCheckEval#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#reset#0;n#AppComponent#0" />
           </folding>
         </state>
       </provider>
@@ -370,7 +371,7 @@
             <element signature="e#1142#1350#0" />
             <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
             <element signature="n#!!block;n#switchLanguage#0;n#AppComponent#0" />
-            <element signature="n#!!block;n#ffCheckEval#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#reset#0;n#AppComponent#0" />
           </folding>
         </state>
       </provider>
@@ -451,7 +452,7 @@
             <element signature="e#1142#1350#0" />
             <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
             <element signature="n#!!block;n#switchLanguage#0;n#AppComponent#0" />
-            <element signature="n#!!block;n#ffCheckEval#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#reset#0;n#AppComponent#0" />
           </folding>
         </state>
       </provider>
@@ -475,7 +476,7 @@
             <element signature="e#1142#1350#0" />
             <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
             <element signature="n#!!block;n#switchLanguage#0;n#AppComponent#0" />
-            <element signature="n#!!block;n#ffCheckEval#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#reset#0;n#AppComponent#0" />
           </folding>
         </state>
       </provider>
@@ -556,7 +557,7 @@
             <element signature="e#1142#1350#0" />
             <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
             <element signature="n#!!block;n#switchLanguage#0;n#AppComponent#0" />
-            <element signature="n#!!block;n#ffCheckEval#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#reset#0;n#AppComponent#0" />
           </folding>
         </state>
       </provider>
@@ -580,7 +581,7 @@
             <element signature="e#1142#1350#0" />
             <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
             <element signature="n#!!block;n#switchLanguage#0;n#AppComponent#0" />
-            <element signature="n#!!block;n#ffCheckEval#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#reset#0;n#AppComponent#0" />
           </folding>
         </state>
       </provider>
@@ -656,7 +657,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2363">
+        <state relative-caret-position="2465">
           <caret line="147" column="41" selection-start-line="147" selection-start-column="41" selection-end-line="147" selection-end-column="41" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -683,8 +684,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="162" column="46" lean-forward="true" selection-start-line="162" selection-start-column="46" selection-end-line="162" selection-end-column="46" />
+        <state relative-caret-position="884">
+          <caret line="163" column="36" selection-start-line="163" selection-start-column="36" selection-end-line="163" selection-end-column="36" />
           <folding>
             <element signature="n#KeysPipe#0" />
             <element signature="e#434#536#0" />
@@ -693,7 +694,7 @@
             <element signature="e#1142#1350#0" />
             <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
             <element signature="n#!!block;n#switchLanguage#0;n#AppComponent#0" />
-            <element signature="n#!!block;n#ffCheckEval#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#reset#0;n#AppComponent#0" />
           </folding>
         </state>
       </provider>
