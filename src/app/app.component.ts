@@ -2,6 +2,9 @@ import {Pipe, PipeTransform} from '@angular/core';
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as jsPDF from 'jspdf';
+import { DrupaldataService } from './drupaldata.service';
+import { HttpClient, HttpParams, HttpHeaders} from "@angular/common/http";
+
 
 @Pipe({name: 'keys'})
 export class KeysPipe implements PipeTransform {
@@ -17,7 +20,8 @@ export class KeysPipe implements PipeTransform {
 @Component({
   selector: 'tr-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [DrupaldataService]
 })
 
 export class AppComponent {
@@ -27,24 +31,19 @@ export class AppComponent {
   };
   // Variables for Value Check, tag used: vc
   valueCheck = true; // used to (de)activate questionnaire (with checkbox)
-  vcs = [  // All Topic Tags
-    "CustNeed", "MarkOport", "Solution"
-  ];
+  // All Topic Tags
+  vcs = ["CustNeed", "MarkOport", "Solution", "Collab", "CustAdv", "ResultFF"];
   valueRank = 0; // Final average of value check
 
   // Variables for Future Fit Check, tag used: ff
-  ffCheck = true;
-  ffCheckUps = [
-    "Energy", "Water", "Respect"
-  ];
-  ffBenchRank = 0; ffMarketRank = 0; ffRank = 0;
+  ffCheck = true; ffBenchRank = 0; ffMarketRank = 0; ffRank = 0;
+  ffCheckUps = ["UpEnergy", "UpWater", "UpRespect", "UpHarm", "UpGreenhouse", "UpWaste", "UpCommunity", "UpEmployees"];
+  ffCheckCores = ["CoreEnergy", "CoreWater", "CoreHarm", "CoreGreenhouse", "CoreEncroach", "CoreWaste", "CoreEmployees", "CoreConcerns", "CoreCommunity"];
+  ffCheckUses = ["UseEnvi", "UseGreenhouse", "UsePeople", "UseCommunic", "RepProd", "RepCommunity"];
 
   // Variables for Business Potential Check, tag used: bp
-  bpCheck = true;
-  bps = [
-    "brandRep", "opExp"
-  ];
-  bpRank = 0;
+  bpCheck = true; bpRank = 0;
+  bps = ["brandRep", "opExp", "emplProd", "staffExp", "marketValue", "innovCult", "risk", "revGrowth"];
 
   score: number;
   text = []; // used for PDF file, is on hold
@@ -64,8 +63,13 @@ export class AppComponent {
     {value: '150', display: 'Outstanding'}
   ];
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private drupaldataservice: DrupaldataService) {
     translate.setDefaultLang('en');
+  }
+
+  ngOnInit() {
+    // this.drupaldataservice.getToken();
+    this.drupaldataservice.postData();
   }
 
   switchLanguage(language: string) {
@@ -80,13 +84,15 @@ export class AppComponent {
     this.valCheckEval();
     this.ffCheckEval();
     this.busPotCheckEval();
+    this.score = this.ffRank;
 
     // todo Final Calculations
     this.text.push("Score: " + this.score.toString())
   }
 
   reset() {
-    this.text = []; this.valueRank = 0; this.ffMarketRank = 0; this.ffBenchRank = 0; this.ffRank = 0; this.bpRank = 0;
+    this.text = []; this.valueRank = 0; this.ffMarketRank = 0;
+    this.ffBenchRank = 0; this.ffRank = 0; this.bpRank = 0;
   }
 
   getWeight(tag, i) { // gets weight of a question
@@ -140,10 +146,16 @@ export class AppComponent {
       this.text.push(document.getElementById('ff').innerHTML);
 
       // Loop through Value Check Questions
-      this.ffBenchRank = this.getAverage('ff', this.ffCheckUps, 'B');
-      this.ffMarketRank = this.getAverage('ff', this.ffCheckUps, 'M');
-
+      console.log("Average Up Bench");
+      console.log(this.getAverage('ffup', this.ffCheckUps, 'B'));
+      console.log("Average Core Bench");
+      console.log(this.getAverage('ffcore', this.ffCheckUps, 'B'));
+      this.ffBenchRank = (this.getAverage('ffup', this.ffCheckUps, 'B') + this.getAverage('ffcore', this.ffCheckCores, 'B') + this.getAverage('ffcore', this.ffCheckUses, 'B')*2)/4;
+      this.ffMarketRank = (this.getAverage('ffup', this.ffCheckUps, 'M') + this.getAverage('ffcore', this.ffCheckCores, 'M') + this.getAverage('ffcore', this.ffCheckUses, 'M')*2)/4;
+      this.ffRank = (this.ffBenchRank + this.ffMarketRank) / 2;
+      console.log("MarketRank: ");
       console.log(this.ffMarketRank);
+      console.log("BenchRank: ");
       console.log(this.ffBenchRank);
 
       // Appends PDF content with question, value and text
@@ -170,8 +182,11 @@ export class AppComponent {
       if (platform.checked){
         this.bpRank += parseInt(platform.value);
       }
+      if (this.bpRank < 0)
+        this.bpRank = 0;
+
+      console.log(this.bpRank);
     }
-    console.log(this.bpRank);
   }
 
   // used to create PDF and make it download

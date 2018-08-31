@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BootstrapComponent } from './bootstrap/bootstrap.component';
+import { HttpModule } from '@angular/http';
+import { DrupaldataService } from './drupaldata.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -19,6 +21,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BootstrapComponent
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
@@ -31,7 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [DrupaldataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

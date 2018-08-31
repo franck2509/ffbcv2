@@ -26,8 +26,10 @@
     "@ngx-translate/http-loader": "^3.0.1",
     "bootstrap": "^4.0.0",
     "core-js": "^2.5.4",
+    "hal": "^1.2.0",
     "jspdf": "^1.4.1",
     "rxjs": "^6.0.0",
+    "rxjs-compat": "^6.2.2",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

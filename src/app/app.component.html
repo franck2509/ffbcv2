@@ -6,11 +6,12 @@
 
 <!-- Value Check Questionnaire -->
 <div *ngIf="valueCheck"> <!-- toggles Questionnaire, takes input from checkbox at the top-->
-<h2 id="vc">Value Check</h2> <!-- Hard coded title -->
+  <!-- Hard coded title -->
+  <h2 id="vc">Value Check</h2>
   <!-- Loop through questions -->
   <div *ngFor="let valueCheck of vcs">
-    <div class="card" style="width: 85%; margin: auto"> <!-- Creates box (called card)-->
-
+    <!-- Creates box (called card)-->
+    <div class="card" style="width: 85%; margin: auto">
       <!-- Card Header = upper grey area, Question Topic Displayed -->
       <h4 class="vcTitle card-header" translate>{{valueCheck}}</h4>
       <p translate>{{valueCheck}}Q</p> <!-- Further Questions belonging to the Topic -->
@@ -46,6 +47,7 @@
 <div *ngIf="ffCheck">
   <h2 id="ff">Future Fit Check</h2>
 
+  <!-- Upstream Activities -->
   <div class="card" style="width: 85%; margin: auto">
   <h3 class="ffTitle card-header" translate>Upstream Activities</h3>
 
@@ -67,12 +69,12 @@
       <div class="container">
         <div class="row">
           <div class="col-sm">
-            <h5 class="ffTitle" translate>{{ffCheckUp}}</h5>
+            <h5 class="ffupTitle" translate>{{ffCheckUp}}</h5>
           </div>
           <div class="col-">
             <span style="margin-right: 2em">
               <td nowrap translate>weight</td>
-              <input class="ffWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
+              <input class="ffupWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
             </span>
           </div>
         </div>
@@ -82,14 +84,14 @@
           <div class="row">
             <div class="col-sm">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label *ngFor="let absolute of scaleAbsolute" class="btn btn-primary btn-sm ffQB">
+                <label *ngFor="let absolute of scaleAbsolute" class="btn btn-primary btn-sm ffupQB">
                   <input type="radio" name="{{ffCheckUp}}B" [value]="absolute.value" autocomplete="off"> {{absolute.display}}
                 </label>
               </div>
             </div>
             <div class="col-sm">
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label *ngFor="let relative of scaleRelative" class="btn btn-primary btn-sm ffQM">
+                <label *ngFor="let relative of scaleRelative" class="btn btn-primary btn-sm ffupQM">
                   <input type="radio" name="{{ffCheckUp}}M" [value]="relative.value" autocomplete="off"> {{relative.display}}
                 </label>
               </div>
@@ -98,10 +100,125 @@
         </div><br>
     </div>
     <div class="card-footer text-muted">
-      <textarea class="ffText" rows="3" style="width: 100%"></textarea>
+      <textarea class="ffupText" rows="3" style="width: 100%"></textarea>
     </div>
-  </div>
+  </div><br>
+
+  <!-- Core Activities -->
+  <div class="card" style="width: 85%; margin: auto">
+    <h3 class="ffcoreTitle card-header" translate>Core Activities</h3>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <h6>Benchmark Check</h6>
+        </div>
+        <div class="col-sm">
+          <h6>Market Check</h6>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loop through questions -->
+    <div *ngFor="let ffCheckCore of ffCheckCores">
+      <!-- Title + further details-->
+      <hr>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <h5 class="ffcoreTitle" translate>{{ffCheckCore}}</h5>
+          </div>
+          <div class="col-">
+            <span style="margin-right: 2em">
+              <td nowrap translate>weight</td>
+              <input class="ffcoreWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- Input through user-->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label *ngFor="let absolute of scaleAbsolute" class="btn btn-primary btn-sm ffcoreQB">
+                <input type="radio" name="{{ffCheckCore}}B" [value]="absolute.value" autocomplete="off"> {{absolute.display}}
+              </label>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label *ngFor="let relative of scaleRelative" class="btn btn-primary btn-sm ffcoreQM">
+                <input type="radio" name="{{ffCheckCore}}M" [value]="relative.value" autocomplete="off"> {{relative.display}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div><br>
+    </div>
+    <div class="card-footer text-muted">
+      <textarea class="ffcoreText" rows="3" style="width: 100%"></textarea>
+    </div>
+  </div><br>
+
+  <!-- Usage & Repurposing -->
+  <div class="card" style="width: 85%; margin: auto">
+    <h3 class="ffuseTitle card-header" translate>Usage & Repurposing Activities</h3>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <h6>Benchmark Check</h6>
+        </div>
+        <div class="col-sm">
+          <h6>Market Check</h6>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loop through questions -->
+    <div *ngFor="let ffCheckUse of ffCheckUses">
+      <!-- Title + further details-->
+      <hr>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <h5 class="ffuseTitle" translate>{{ffCheckUse}}</h5>
+          </div>
+          <div class="col-">
+            <span style="margin-right: 2em">
+              <td nowrap translate>weight</td>
+              <input class="ffuseWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- Input through user-->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label *ngFor="let absolute of scaleAbsolute" class="btn btn-primary btn-sm ffuseQB">
+                <input type="radio" name="{{ffCheckUse}}B" [value]="absolute.value" autocomplete="off"> {{absolute.display}}
+              </label>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label *ngFor="let relative of scaleRelative" class="btn btn-primary btn-sm ffuseQM">
+                <input type="radio" name="{{ffCheckUse}}M" [value]="relative.value" autocomplete="off"> {{relative.display}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div><br>
+    </div>
+    <div class="card-footer text-muted">
+      <textarea class="ffuseText" rows="3" style="width: 100%"></textarea>
+    </div>
+  </div><br>
 </div>
+
 
 <!-- Business Potential Check Questionnaire -->
 <div *ngIf="bpCheck">
