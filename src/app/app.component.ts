@@ -3,14 +3,14 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as jsPDF from 'jspdf';
 import { DrupaldataService } from './drupaldata.service';
-import { HttpClient, HttpParams, HttpHeaders} from "@angular/common/http";
+import { HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 
 
 @Pipe({name: 'keys'})
 export class KeysPipe implements PipeTransform {
-  transform(value, args:string[]) : any {
-    let keys = [];
-    for (let key in value) {
+  transform(value, args: string[]): any {
+    const keys = [];
+    for (const key in value) {
       keys.push({key: key, value: value[key]});
     }
     return keys;
@@ -32,18 +32,19 @@ export class AppComponent {
   // Variables for Value Check, tag used: vc
   valueCheck = true; // used to (de)activate questionnaire (with checkbox)
   // All Topic Tags
-  vcs = ["CustNeed", "MarkOport", "Solution", "Collab", "CustAdv", "ResultFF"];
+  vcs = ['CustNeed', 'MarkOport', 'Solution', 'Collab', 'CustAdv', 'ResultFF'];
   valueRank = 0; // Final average of value check
 
   // Variables for Future Fit Check, tag used: ff
   ffCheck = true; ffBenchRank = 0; ffMarketRank = 0; ffRank = 0;
-  ffCheckUps = ["UpEnergy", "UpWater", "UpRespect", "UpHarm", "UpGreenhouse", "UpWaste", "UpCommunity", "UpEmployees"];
-  ffCheckCores = ["CoreEnergy", "CoreWater", "CoreHarm", "CoreGreenhouse", "CoreEncroach", "CoreWaste", "CoreEmployees", "CoreConcerns", "CoreCommunity"];
-  ffCheckUses = ["UseEnvi", "UseGreenhouse", "UsePeople", "UseCommunic", "RepProd", "RepCommunity"];
+  ffCheckUps = ['UpEnergy', 'UpWater', 'UpRespect', 'UpHarm', 'UpGreenhouse', 'UpWaste', 'UpCommunity', 'UpEmployees'];
+  ffCheckCores = ['CoreEnergy', 'CoreWater', 'CoreHarm', 'CoreGreenhouse', 'CoreEncroach', 'CoreWaste',
+                  'CoreEmployees', 'CoreConcerns', 'CoreCommunity'];
+  ffCheckUses = ['UseEnvi', 'UseGreenhouse', 'UsePeople', 'UseCommunic', 'RepProd', 'RepCommunity'];
 
   // Variables for Business Potential Check, tag used: bp
   bpCheck = true; bpRank = 0;
-  bps = ["brandRep", "opExp", "emplProd", "staffExp", "marketValue", "innovCult", "risk", "revGrowth"];
+  bps = ['brandRep', 'opExp', 'emplProd', 'staffExp', 'marketValue', 'innovCult', 'risk', 'revGrowth'];
 
   score: number;
   text = []; // used for PDF file, is on hold
@@ -68,8 +69,8 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    // this.drupaldataservice.getToken();
-    this.drupaldataservice.postData();
+    this.drupaldataservice.getData();
+    // this.drupaldataservice.postData();
   }
 
   switchLanguage(language: string) {
@@ -78,7 +79,7 @@ export class AppComponent {
 
   result() {
     // Reseting PDF content, variables used for calculations
-    this.reset()
+    this.reset();
 
     // get calculations from each check
     this.valCheckEval();
@@ -87,7 +88,7 @@ export class AppComponent {
     this.score = this.ffRank;
 
     // todo Final Calculations
-    this.text.push("Score: " + this.score.toString())
+    this.text.push('Score: ' + this.score.toString());
   }
 
   reset() {
@@ -97,8 +98,8 @@ export class AppComponent {
 
   getWeight(tag, i) { // gets weight of a question
     // 2 steps for getting the value due to strange bug, some sort of workaround used
-    let w = <HTMLInputElement>document.getElementsByClassName(tag + 'Weight')[i];
-    let weight = parseInt(w.value);
+    const w = <HTMLInputElement>document.getElementsByClassName(tag + 'Weight')[i];
+    const weight = parseInt(w.value);
     return weight;
   }
 
@@ -107,10 +108,10 @@ export class AppComponent {
     let points = 0; let amount = 0; // used to sum up points and count
     // loops through all questions (tags) of questionnaire
     for (let i = 0; i < questionnaire.length; i++) {
-      let weight = this.getWeight(tag, i);
+      const weight = this.getWeight(tag, i);
       // loop through radio buttons to get the activated one
       for (let j = 0; j < this.scaleAbsolute.length; j++) { // goes through all buttons and retrieves checked one
-        let radio = <HTMLInputElement>document.getElementsByName(questionnaire[i] + addOn)[j];
+        const radio = <HTMLInputElement>document.getElementsByName(questionnaire[i] + addOn)[j];
         if (radio.checked === true) {
           // add to average
           if ((radio.value) !== 'null') {
@@ -146,16 +147,16 @@ export class AppComponent {
       this.text.push(document.getElementById('ff').innerHTML);
 
       // Loop through Value Check Questions
-      console.log("Average Up Bench");
+      console.log('Average Up Bench');
       console.log(this.getAverage('ffup', this.ffCheckUps, 'B'));
-      console.log("Average Core Bench");
+      console.log('Average Core Bench');
       console.log(this.getAverage('ffcore', this.ffCheckUps, 'B'));
       this.ffBenchRank = (this.getAverage('ffup', this.ffCheckUps, 'B') + this.getAverage('ffcore', this.ffCheckCores, 'B') + this.getAverage('ffcore', this.ffCheckUses, 'B')*2)/4;
       this.ffMarketRank = (this.getAverage('ffup', this.ffCheckUps, 'M') + this.getAverage('ffcore', this.ffCheckCores, 'M') + this.getAverage('ffcore', this.ffCheckUses, 'M')*2)/4;
       this.ffRank = (this.ffBenchRank + this.ffMarketRank) / 2;
-      console.log("MarketRank: ");
+      console.log('MarketRank: ');
       console.log(this.ffMarketRank);
-      console.log("BenchRank: ");
+      console.log('BenchRank: ');
       console.log(this.ffBenchRank);
 
       // Appends PDF content with question, value and text
@@ -171,29 +172,30 @@ export class AppComponent {
   }
 
   busPotCheckEval() {
-    if(this.bpCheck) {
+    if (this.bpCheck) {
       this.bpRank = this.getAverage('bp', this.bps);
       // first 2 questions hardcoded
-      let direct = <HTMLInputElement>document.getElementsByName('1')[1];
-      if (direct.checked){
+      const direct = <HTMLInputElement>document.getElementsByName('1')[1];
+      if (direct.checked) {
         this.bpRank += parseInt(direct.value);
       }
-      let platform = <HTMLInputElement>document.getElementsByName('2')[1];
-      if (platform.checked){
+      const platform = <HTMLInputElement>document.getElementsByName('2')[1];
+      if (platform.checked) {
         this.bpRank += parseInt(platform.value);
       }
-      if (this.bpRank < 0)
+      if (this.bpRank < 0) {
         this.bpRank = 0;
+      }
 
       console.log(this.bpRank);
     }
   }
 
   // used to create PDF and make it download
-  savePDF(){
+  savePDF() {
     this.result();
     const doc = new jsPDF();
     doc.text(this.text,10,10);
-    doc.save("prototyp.pdf");
+    doc.save('prototyp.pdf');
   }
 }
