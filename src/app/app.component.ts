@@ -33,6 +33,7 @@ export class AppComponent {
   valueCheck = true; // used to (de)activate questionnaire (with checkbox)
   // All Topic Tags
   vcs = ['CustNeed', 'MarkOport', 'Solution', 'Collab', 'CustAdv', 'ResultFF'];
+  vcData = {};
   valueRank = 0; // Final average of value check
 
   // Variables for Future Fit Check, tag used: ff
@@ -63,6 +64,8 @@ export class AppComponent {
     {value: '100', display: 'Better'},
     {value: '150', display: 'Outstanding'}
   ];
+
+  data = '';
 
   constructor(private translate: TranslateService, private drupaldataservice: DrupaldataService) {
     translate.setDefaultLang('en');
@@ -129,7 +132,6 @@ export class AppComponent {
       // Adding Value Check Title to PDF
       this.text.push(document.getElementById('vc').innerHTML);
       this.valueRank = this.getAverage('vc', this.vcs);
-
       /*
       // Appends PDF content with question, value and text
       let vcTitle = <HTMLInputElement>document.getElementsByClassName('vcTitle')[i];
@@ -151,8 +153,10 @@ export class AppComponent {
       console.log(this.getAverage('ffup', this.ffCheckUps, 'B'));
       console.log('Average Core Bench');
       console.log(this.getAverage('ffcore', this.ffCheckUps, 'B'));
-      this.ffBenchRank = (this.getAverage('ffup', this.ffCheckUps, 'B') + this.getAverage('ffcore', this.ffCheckCores, 'B') + this.getAverage('ffcore', this.ffCheckUses, 'B')*2)/4;
-      this.ffMarketRank = (this.getAverage('ffup', this.ffCheckUps, 'M') + this.getAverage('ffcore', this.ffCheckCores, 'M') + this.getAverage('ffcore', this.ffCheckUses, 'M')*2)/4;
+      this.ffBenchRank = (this.getAverage('ffup', this.ffCheckUps, 'B')
+        + this.getAverage('ffcore', this.ffCheckCores, 'B') + this.getAverage('ffcore', this.ffCheckUses, 'B') * 2) / 4;
+      this.ffMarketRank = (this.getAverage('ffup', this.ffCheckUps, 'M')
+        + this.getAverage('ffcore', this.ffCheckCores, 'M') + this.getAverage('ffcore', this.ffCheckUses, 'M') * 2) / 4;
       this.ffRank = (this.ffBenchRank + this.ffMarketRank) / 2;
       console.log('MarketRank: ');
       console.log(this.ffMarketRank);
@@ -195,7 +199,7 @@ export class AppComponent {
   savePDF() {
     this.result();
     const doc = new jsPDF();
-    doc.text(this.text,10,10);
+    doc.text(this.text, 10, 10);
     doc.save('prototyp.pdf');
   }
 }

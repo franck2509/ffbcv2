@@ -19,16 +19,31 @@ export class DrupaldataService {
     }
 
 
-    postData() {
-    const json = JSON.stringify({var1: 'test', var2: 3});
+    postData(data) {
+    // const json = JSON.stringify({var1: 'test', var2: 3});
+    const json = {
+      "vc": {
+        "vcq1": {
+          "score": "strong",
+          "text": "blabla"
+        },
+        "vcq2": {
+          "score": "weak",
+          "text": "bla2bla2"
+        }
+      },
+      "ffc": {
+      "ffcq1": {
+        "bench": "strong",
+        "market": "better"
+      }
+    }
+    };
     const params = 'json=' + json;
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    /*
-    this.http.post('https://ffbcv-eaadf.firebaseio.com', params, { // http://localhost/api/v1/dreamit
-      headers: headers
-    }).map(res => res.json());
-    */
+    // const headers = new HttpHeaders();
+    // headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    return this.http.post('https://ffbcv-eaadf.firebaseio.com/reports.json', json).subscribe((data: any) => console.log(data));
+
   }
 
   /* Functions for Drupal, currently out of use
