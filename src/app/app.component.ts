@@ -25,17 +25,13 @@ export class KeysPipe implements PipeTransform {
 })
 
 export class AppComponent {
-  user = {
-    name: 'Arthur',
-    age: 42
-  };
   // Variables for Value Check, tag used: vc
   valueCheck = true; // used to (de)activate questionnaire (with checkbox)
   // All Topic Tags
   vcs = ['CustNeed', 'MarkOport', 'Solution', 'Collab', 'CustAdv', 'ResultFF'];
   vcData = {};
-  valueWeight = 1;
-  valueRank = 0; // Final average of value check
+  vcWeight = 1;
+  vcRank = 0; // Final average of value check
 
   // Variables for Future Fit Check, tag used: ff
   ffCheck = true; ffWeight = 1; ffBenchRank = 0; ffMarketRank = 0; ffRank = 0;
@@ -48,7 +44,7 @@ export class AppComponent {
   bpCheck = true; bpWeight = 1; bpRank = 0;
   bps = ['brandRep', 'opExp', 'emplProd', 'staffExp', 'marketValue', 'innovCult', 'risk', 'revGrowth'];
 
-  score: number;
+  score: number; grade = '';
   text = []; // used for PDF file, is on hold
 
   scaleAbsolute = [
@@ -65,7 +61,6 @@ export class AppComponent {
     {value: '100', display: 'Better'},
     {value: '150', display: 'Outstanding'}
   ];
-
   data = '';
 
   constructor(private translate: TranslateService, private drupaldataservice: DrupaldataService) {
@@ -84,22 +79,51 @@ export class AppComponent {
   result() {
     // Reseting PDF content, variables used for calculations
     this.reset();
-
+    let points = 0; let weights = 0 ;
     // get calculations from each check
-    this.valCheckEval();
-    this.ffCheckEval();
-    this.busPotCheckEval();
-    this.score = this.ffRank;
+    if (this.valueCheck) {
+      this.valCheckEval();
+      points += this.vcRank * this.vcWeight; weights += this.vcWeight;
+    }
+    if (this.ffCheck) {
+      this.ffCheckEval();
+      points += this.ffRank * this.ffWeight; weights += this.ffWeight;
+    }
+    if (this.bpCheck) {
+      this.busPotCheckEval();
+      points += this.bpRank * this.bpWeight; weights += this.bpWeight;
+    }
+
+    this.score = points / weights;
+    if (this.score > 100) {
+      this.grade = 'R - Business case is positively future fir, adds value to society, is regenerative to environment.';
+    }
+    if (this.score > 75) {
+      this.grade = 'A - Business case is highly future fit.';
+    }
+    if (this.score > 50) {
+      this.grade = 'B - Business case is moderatly future fit.';
+    }
+    if (this.score > 25) {
+      this.grade = 'C - Business case is weakly future fit.';
+    } else {
+      this.grade = 'D - Business case is not future fit.';
+    }
 
     // todo Final Calculations
     this.text.push('Score: ' + this.score.toString());
   }
 
   reset() {
-    this.text = []; this.valueRank = 0; this.ffMarketRank = 0;
-    this.ffBenchRank = 0; this.ffRank = 0; this.bpRank = 0;
+    this.text = [];
+    this.vcRank = 0;
+    this.ffMarketRank = 0;
+    this.ffBenchRank = 0;
+    this.ffRank = 0;
+    this.bpRank = 0;
   }
 
+  // out of use
   getWeight(tag, i) { // gets weight of a question
     // 2 steps for getting the value due to strange bug, some sort of workaround used
     const w = <HTMLInputElement>document.getElementsByClassName(tag + 'Weight')[i];
@@ -112,15 +136,14 @@ export class AppComponent {
     let points = 0; let amount = 0; // used to sum up points and count
     // loops through all questions (tags) of questionnaire
     for (let i = 0; i < questionnaire.length; i++) {
-      const weight = this.getWeight(tag, i);
       // loop through radio buttons to get the activated one
       for (let j = 0; j < this.scaleAbsolute.length; j++) { // goes through all buttons and retrieves checked one
         const radio = <HTMLInputElement>document.getElementsByName(questionnaire[i] + addOn)[j];
         if (radio.checked === true) {
           // add to average
           if ((radio.value) !== 'null') {
-            points += parseInt(radio.value) * weight;
-            amount += weight;
+            points += parseInt(radio.value);
+            amount++;
           }
         }
       }
@@ -132,7 +155,7 @@ export class AppComponent {
     if (this.valueCheck) {
       // Adding Value Check Title to PDF
       this.text.push(document.getElementById('vc').innerHTML);
-      this.valueRank = this.getAverage('vc', this.vcs);
+      this.vcRank = this.getAverage('vc', this.vcs);
       /*
       // Appends PDF content with question, value and text
       let vcTitle = <HTMLInputElement>document.getElementsByClassName('vcTitle')[i];
@@ -140,7 +163,7 @@ export class AppComponent {
       let vcText = <HTMLInputElement>document.getElementsByClassName('vcText')[i];
       this.text.push(vcText.value);
       */
-      console.log(this.valueRank);
+      console.log(this.vcRank);
     }
   }
 
