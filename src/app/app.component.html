@@ -29,12 +29,6 @@
                 <input type="radio" name={{valueCheck}} [value]="absolute.value" autocomplete="off"> {{absolute.display}}
               </label>
             </div>
-            <br><br>
-            <!-- Weight of question -->
-            <span>
-              <td nowrap translate>weight</td>
-              <input class="vcWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
-            </span>
           </div>
           <!-- Text input -->
           <div class="col-sm">
@@ -70,17 +64,7 @@
     <!-- Title + further details-->
     <hr>
       <div class="container">
-        <div class="row">
-          <div class="col-sm">
-            <h5 class="ffupTitle" translate>{{ffCheckUp}}</h5>
-          </div>
-          <div class="col-">
-            <span style="margin-right: 2em">
-              <td nowrap translate>weight</td>
-              <input class="ffupWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
-            </span>
-          </div>
-        </div>
+        <h5 class="ffupTitle" translate>{{ffCheckUp}}</h5>
       </div>
       <!-- Input through user-->
         <div class="container">
@@ -100,7 +84,7 @@
               </div>
             </div>
           </div>
-        </div><br>
+        </div>
     </div>
     <div class="card-footer text-muted">
       <textarea class="ffupText" rows="3" style="width: 100%"></textarea>
@@ -127,17 +111,7 @@
       <!-- Title + further details-->
       <hr>
       <div class="container">
-        <div class="row">
-          <div class="col-sm">
-            <h5 class="ffcoreTitle" translate>{{ffCheckCore}}</h5>
-          </div>
-          <div class="col-">
-            <span style="margin-right: 2em">
-              <td nowrap translate>weight</td>
-              <input class="ffcoreWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
-            </span>
-          </div>
-        </div>
+        <h5 class="ffcoreTitle" translate>{{ffCheckCore}}</h5>
       </div>
       <!-- Input through user-->
       <div class="container">
@@ -157,7 +131,7 @@
             </div>
           </div>
         </div>
-      </div><br>
+      </div>
     </div>
     <div class="card-footer text-muted">
       <textarea class="ffcoreText" rows="3" style="width: 100%"></textarea>
@@ -184,17 +158,7 @@
       <!-- Title + further details-->
       <hr>
       <div class="container">
-        <div class="row">
-          <div class="col-sm">
-            <h5 class="ffuseTitle" translate>{{ffCheckUse}}</h5>
-          </div>
-          <div class="col-">
-            <span style="margin-right: 2em">
-              <td nowrap translate>weight</td>
-              <input class="ffuseWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
-            </span>
-          </div>
-        </div>
+        <h5 class="ffuseTitle" translate>{{ffCheckUse}}</h5>
       </div>
       <!-- Input through user-->
       <div class="container">
@@ -243,11 +207,6 @@
               <input type="radio" name="1" value="-50" autocomplete="off"> No
             </label>
           </div>
-          <br><br>
-          <span>
-              <td nowrap translate>weight</td>
-              <input class="bp1Weight" type="text" value="1" style="width: 3em; margin-left: 1em">
-            </span>
         </div>
         <div class="col-sm">
           <textarea class="bpText" rows="3" style="width: 100%"></textarea>
@@ -271,11 +230,6 @@
               <input type="radio" name="2" value="-50" autocomplete="off"> No
             </label>
           </div>
-          <br><br>
-          <span>
-              <td nowrap translate>weight</td>
-              <input class="bp2Weight" type="text" value="1" style="width: 3em; margin-left: 1em">
-            </span>
         </div>
         <div class="col-sm">
           <textarea class="bpText" rows="3" style="width: 100%"></textarea>
@@ -301,11 +255,6 @@
                 <input type="radio" name={{bpCheck}} [value]="absolute.value" autocomplete="off"> {{absolute.display}}
               </label>
             </div>
-            <br><br>
-            <span>
-              <td nowrap translate>weight</td>
-              <input class="bpWeight" type="text" value="1" style="width: 3em; margin-left: 1em">
-            </span>
           </div>
           <div class="col-sm">
             <textarea class="bpText" rows="3" style="width: 100%"></textarea>
@@ -319,8 +268,6 @@
 <button id="validate" type="submit" (click)= "result()">Submit</button>
 <button type="submit" (click)="savePDF()">Download PDF</button>
 <p>Average: {{score}}%</p>
-<br><br>
-
 
 
 <!--tr-bootstrap></tr-bootstrap-->

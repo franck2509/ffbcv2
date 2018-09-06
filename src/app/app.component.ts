@@ -34,17 +34,18 @@ export class AppComponent {
   // All Topic Tags
   vcs = ['CustNeed', 'MarkOport', 'Solution', 'Collab', 'CustAdv', 'ResultFF'];
   vcData = {};
+  valueWeight = 1;
   valueRank = 0; // Final average of value check
 
   // Variables for Future Fit Check, tag used: ff
-  ffCheck = true; ffBenchRank = 0; ffMarketRank = 0; ffRank = 0;
+  ffCheck = true; ffWeight = 1; ffBenchRank = 0; ffMarketRank = 0; ffRank = 0;
   ffCheckUps = ['UpEnergy', 'UpWater', 'UpRespect', 'UpHarm', 'UpGreenhouse', 'UpWaste', 'UpCommunity', 'UpEmployees'];
   ffCheckCores = ['CoreEnergy', 'CoreWater', 'CoreHarm', 'CoreGreenhouse', 'CoreEncroach', 'CoreWaste',
                   'CoreEmployees', 'CoreConcerns', 'CoreCommunity'];
   ffCheckUses = ['UseEnvi', 'UseGreenhouse', 'UsePeople', 'UseCommunic', 'RepProd', 'RepCommunity'];
 
   // Variables for Business Potential Check, tag used: bp
-  bpCheck = true; bpRank = 0;
+  bpCheck = true; bpWeight = 1; bpRank = 0;
   bps = ['brandRep', 'opExp', 'emplProd', 'staffExp', 'marketValue', 'innovCult', 'risk', 'revGrowth'];
 
   score: number;
