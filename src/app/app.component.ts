@@ -35,11 +35,11 @@ export class AppComponent {
   vcRank = 0; // Final average of value check
 
   // Variables for Future Fit Check, tag used: ff
-  ffCheck = true; ffWeight = 1; ffBenchRank = 0; ffMarketRank = 0; ffRank = 0;
-  ffCheckUps = ['UpEnergy', 'UpWater', 'UpRespect', 'UpHarm', 'UpGreenhouse', 'UpWaste', 'UpCommunity', 'UpEmployees'];
-  ffCheckCores = ['CoreEnergy', 'CoreWater', 'CoreHarm', 'CoreGreenhouse', 'CoreEncroach', 'CoreWaste',
-                  'CoreEmployees', 'CoreConcerns', 'CoreCommunity'];
-  ffCheckUses = ['UseEnvi', 'UseGreenhouse', 'UsePeople', 'UseCommunic', 'RepProd', 'RepCommunity'];
+  ffCheck = true; ffWeight = 1; ffBenchRank = 0; ffMarketRank = 0; ffRank = 0; ffData = '';
+  ffCheckUps = ['UpEnergy', 'UpWater'/*, 'UpRespect', 'UpHarm', 'UpGreenhouse', 'UpWaste', 'UpCommunity', 'UpEmployees'*/];
+  ffCheckCores = ['CoreEnergy', 'CoreWater'/*, 'CoreHarm', 'CoreGreenhouse', 'CoreEncroach', 'CoreWaste',
+                  'CoreEmployees', 'CoreConcerns', 'CoreCommunity'*/];
+  ffCheckUses = ['UseEnvi', 'UseGreenhouse'/*, 'UsePeople', 'UseCommunic', 'RepProd', 'RepCommunity'*/];
 
   // Variables for Business Potential Check, tag used: bp
   bpCheck = true; bpWeight = 1; bpRank = 0;
@@ -83,12 +83,8 @@ export class AppComponent {
     let points = 0; let weights = 0 ;
     // get calculations from each check
     if (this.valueCheck) {
-      this.vcData = '{ "vc": {';
       this.valCheckEval();
       points += this.vcRank * this.vcWeight; weights += this.vcWeight;
-      this.vcData = this.vcData.slice(0, -1);
-      this.vcData += '}}';
-      console.log(this.vcData);
     }
     if (this.ffCheck) {
       this.ffCheckEval();
@@ -100,7 +96,7 @@ export class AppComponent {
     }
     this.score = points / weights;
     this.getGrade();
-    this.drupaldataservice.postData(this.vcData);
+    // this.drupaldataservice.postData(this.vcData);
 
     // todo Final Calculations
     // this.text.push('Score: ' + this.score.toString());
@@ -134,15 +130,11 @@ export class AppComponent {
     let points = 0; let amount = 0; // used to sum up points and count
     // loops through all questions (tags) of questionnaire
     for (let i = 0; i < questionnaire.length; i++) {
-      this.vcData += '\"' + questionnaire[i] + '\"' + ':';
-      const text = <HTMLInputElement>document.getElementsByClassName(tag + 'Text')[i];
       // loop through radio buttons to get the activated one
       for (let j = 0; j < this.scaleAbsolute.length; j++) { // goes through all buttons and retrieves checked one
         const radio = <HTMLInputElement>document.getElementsByName(questionnaire[i] + addOn)[j];
         if (radio.checked === true) {
           // add to average
-          const data = {score: parseInt(radio.value), text : text.value};
-          this.vcData += JSON.stringify( data) + ',';
           if ((radio.value) !== 'null') {
             points += parseInt(radio.value);
             amount++;
@@ -158,6 +150,7 @@ export class AppComponent {
       // Adding Value Check Title to PDF
       this.text.push(document.getElementById('vc').innerHTML);
       this.vcRank = this.getAverage('vc', this.vcs);
+      this.vcJson();
       /*
       // Appends PDF content with question, value and text
       let vcTitle = <HTMLInputElement>document.getElementsByClassName('vcTitle')[i];
@@ -169,25 +162,36 @@ export class AppComponent {
     }
   }
 
+  vcJson() {
+    this.vcData = '{ "vc": {';
+    for (let i = 0; i < this.vcs.length; i++) {
+      this.vcData += '\"' + this.vcs[i] + '\"' + ':';
+      const text = <HTMLInputElement>document.getElementsByClassName('vcText')[i];
+      for (let j = 0; j < this.scaleAbsolute.length; j++) {
+        const radio = <HTMLInputElement>document.getElementsByName(this.vcs[i])[j];
+        if (radio.checked === true) {
+          // add to average
+          const data = {score: parseInt(radio.value), text: text.value};
+          this.vcData += JSON.stringify(data) + ',';
+        }
+      }
+    }
+    this.vcData = this.vcData.slice(0, -1);
+    this.vcData += '}}';
+  }
+
   ffCheckEval() {
     if (this.ffCheck) {
       // Adding Value Check Title to PDF
       this.text.push(document.getElementById('ff').innerHTML);
 
       // Loop through Value Check Questions
-      console.log('Average Up Bench');
-      console.log(this.getAverage('ffup', this.ffCheckUps, 'B'));
-      console.log('Average Core Bench');
-      console.log(this.getAverage('ffcore', this.ffCheckUps, 'B'));
       this.ffBenchRank = (this.getAverage('ffup', this.ffCheckUps, 'B')
         + this.getAverage('ffcore', this.ffCheckCores, 'B') + this.getAverage('ffcore', this.ffCheckUses, 'B') * 2) / 4;
       this.ffMarketRank = (this.getAverage('ffup', this.ffCheckUps, 'M')
         + this.getAverage('ffcore', this.ffCheckCores, 'M') + this.getAverage('ffcore', this.ffCheckUses, 'M') * 2) / 4;
       this.ffRank = (this.ffBenchRank + this.ffMarketRank) / 2;
-      console.log('MarketRank: ');
-      console.log(this.ffMarketRank);
-      console.log('BenchRank: ');
-      console.log(this.ffBenchRank);
+      this.ffJson();
 
       // Appends PDF content with question, value and text
       /*
@@ -199,6 +203,78 @@ export class AppComponent {
       }
     }*/
     }
+  }
+
+  ffJson() {
+    this.ffData = '{ "ffc": { "ffup": {';
+    let radioB: string;
+    let radioM: string;
+    let text = <HTMLInputElement>document.getElementById('ffupText');
+    console.log(text.value);
+    for (let i = 0; i < this.ffCheckUps.length; i++) {
+      this.ffData += '\"' + this.ffCheckUps[i] + '\"' + ':';
+      for (let j = 0; j < this.scaleAbsolute.length; j++) {
+        const radio = <HTMLInputElement>document.getElementsByName(this.ffCheckUps[i] + 'B')[j];
+        if (radio.checked === true) {
+          radioB = radio.value;
+        }
+      }
+      for (let j = 0; j < this.scaleRelative.length; j++) {
+        const radio = <HTMLInputElement>document.getElementsByName(this.ffCheckUps[i] + 'M')[j];
+        if (radio.checked === true) {
+          radioM = radio.value;
+        }
+      }
+      const data = {benchmark: parseInt(radioB), market: parseInt(radioM)};
+      this.ffData += JSON.stringify(data) + ',';
+    }
+    this.ffData += JSON.stringify({ffuptext: text.value});
+    this.ffData += '}, "ffcore": {';
+
+    text = <HTMLInputElement>document.getElementById('ffcoreText');
+    console.log(text.value);
+    for (let i = 0; i < this.ffCheckCores.length; i++) {
+      this.ffData += '\"' + this.ffCheckCores[i] + '\"' + ':';
+      for (let j = 0; j < this.scaleAbsolute.length; j++) {
+        const radio = <HTMLInputElement>document.getElementsByName(this.ffCheckCores[i] + 'B')[j];
+        if (radio.checked === true) {
+          radioB = radio.value;
+        }
+      }
+      for (let j = 0; j < this.scaleRelative.length; j++) {
+        const radio = <HTMLInputElement>document.getElementsByName(this.ffCheckCores[i] + 'M')[j];
+        if (radio.checked === true) {
+          radioM = radio.value;
+        }
+      }
+      const data = {benchmark: parseInt(radioB), market: parseInt(radioM)};
+      this.ffData += JSON.stringify(data) + ',';
+    }
+    this.ffData += JSON.stringify({ffcoretext: text.value});
+    this.ffData += '}, "ffuse": {';
+
+    text = <HTMLInputElement>document.getElementById('ffuseText');
+    console.log(text.value);
+    for (let i = 0; i < this.ffCheckUps.length; i++) {
+      this.ffData += '\"' + this.ffCheckUps[i] + '\"' + ':';
+      for (let j = 0; j < this.scaleAbsolute.length; j++) {
+        const radio = <HTMLInputElement>document.getElementsByName(this.ffCheckUps[i] + 'B')[j];
+        if (radio.checked === true) {
+          radioB = radio.value;
+        }
+      }
+      for (let j = 0; j < this.scaleRelative.length; j++) {
+        const radio = <HTMLInputElement>document.getElementsByName(this.ffCheckUps[i] + 'M')[j];
+        if (radio.checked === true) {
+          radioM = radio.value;
+        }
+      }
+      const data = {benchmark: parseInt(radioB), market: parseInt(radioM)};
+      this.ffData += JSON.stringify(data) + ',';
+    }
+    this.ffData += JSON.stringify({ffusetext: text.value});
+    this.ffData += '}}}';
+    console.log(this.ffData);
   }
 
   busPotCheckEval() {
