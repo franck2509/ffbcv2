@@ -42,7 +42,7 @@ export class DrupaldataService {
     const params = 'json=' + json;
     // const headers = new HttpHeaders();
     // headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    return this.http.post('https://ffbcv-eaadf.firebaseio.com/reports.json', json).subscribe((data: any) => console.log(data));
+    return this.http.post('https://ffbcv-eaadf.firebaseio.com/reports.json', data).subscribe((data: any) => console.log(data));
 
   }
 

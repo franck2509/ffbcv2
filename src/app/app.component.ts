@@ -26,10 +26,11 @@ export class KeysPipe implements PipeTransform {
 
 export class AppComponent {
   // Variables for Value Check, tag used: vc
+  data = '';
   valueCheck = true; // used to (de)activate questionnaire (with checkbox)
   // All Topic Tags
   vcs = ['CustNeed', 'MarkOport', 'Solution', 'Collab', 'CustAdv', 'ResultFF'];
-  vcData = {};
+  vcData = '';
   vcWeight = 1;
   vcRank = 0; // Final average of value check
 
@@ -44,7 +45,7 @@ export class AppComponent {
   bpCheck = true; bpWeight = 1; bpRank = 0;
   bps = ['brandRep', 'opExp', 'emplProd', 'staffExp', 'marketValue', 'innovCult', 'risk', 'revGrowth'];
 
-  score: number; grade = '';
+  score = 0; grade = '';
   text = []; // used for PDF file, is on hold
 
   scaleAbsolute = [
@@ -61,7 +62,7 @@ export class AppComponent {
     {value: '100', display: 'Better'},
     {value: '150', display: 'Outstanding'}
   ];
-  data = '';
+
 
   constructor(private translate: TranslateService, private drupaldataservice: DrupaldataService) {
     translate.setDefaultLang('en');
@@ -82,8 +83,12 @@ export class AppComponent {
     let points = 0; let weights = 0 ;
     // get calculations from each check
     if (this.valueCheck) {
+      this.vcData = '{ "vc": {';
       this.valCheckEval();
       points += this.vcRank * this.vcWeight; weights += this.vcWeight;
+      this.vcData = this.vcData.slice(0, -1);
+      this.vcData += '}}';
+      console.log(this.vcData);
     }
     if (this.ffCheck) {
       this.ffCheckEval();
@@ -93,27 +98,28 @@ export class AppComponent {
       this.busPotCheckEval();
       points += this.bpRank * this.bpWeight; weights += this.bpWeight;
     }
-
     this.score = points / weights;
+    this.getGrade();
+    this.drupaldataservice.postData(this.vcData);
+
+    // todo Final Calculations
+    // this.text.push('Score: ' + this.score.toString());
+  }
+
+  getGrade() {
+    console.log('score ' + this.score);
     if (this.score > 100) {
-      this.grade = 'R - Business case is positively future fir, adds value to society, is regenerative to environment.';
-    }
-    if (this.score > 75) {
+      this.grade = 'R - Business case is positively future fit, adds value to society, is regenerative to environment.';
+    } else if (this.score > 75) {
       this.grade = 'A - Business case is highly future fit.';
-    }
-    if (this.score > 50) {
+    } else if (this.score > 50) {
       this.grade = 'B - Business case is moderatly future fit.';
-    }
-    if (this.score > 25) {
+    } else if (this.score > 25) {
       this.grade = 'C - Business case is weakly future fit.';
     } else {
       this.grade = 'D - Business case is not future fit.';
     }
-
-    // todo Final Calculations
-    this.text.push('Score: ' + this.score.toString());
   }
-
   reset() {
     this.text = [];
     this.vcRank = 0;
@@ -123,24 +129,20 @@ export class AppComponent {
     this.bpRank = 0;
   }
 
-  // out of use
-  getWeight(tag, i) { // gets weight of a question
-    // 2 steps for getting the value due to strange bug, some sort of workaround used
-    const w = <HTMLInputElement>document.getElementsByClassName(tag + 'Weight')[i];
-    const weight = parseInt(w.value);
-    return weight;
-  }
-
   // calculates average of a questionnaire
   getAverage(tag, questionnaire, addOn = '') {
     let points = 0; let amount = 0; // used to sum up points and count
     // loops through all questions (tags) of questionnaire
     for (let i = 0; i < questionnaire.length; i++) {
+      this.vcData += '\"' + questionnaire[i] + '\"' + ':';
+      const text = <HTMLInputElement>document.getElementsByClassName(tag + 'Text')[i];
       // loop through radio buttons to get the activated one
       for (let j = 0; j < this.scaleAbsolute.length; j++) { // goes through all buttons and retrieves checked one
         const radio = <HTMLInputElement>document.getElementsByName(questionnaire[i] + addOn)[j];
         if (radio.checked === true) {
           // add to average
+          const data = {score: parseInt(radio.value), text : text.value};
+          this.vcData += JSON.stringify( data) + ',';
           if ((radio.value) !== 'null') {
             points += parseInt(radio.value);
             amount++;
