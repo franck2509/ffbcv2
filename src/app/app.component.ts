@@ -36,13 +36,13 @@ export class AppComponent {
 
   // Variables for Future Fit Check, tag used: ff
   ffCheck = true; ffWeight = 1; ffBenchRank = 0; ffMarketRank = 0; ffRank = 0; ffData = '';
-  ffCheckUps = ['UpEnergy', 'UpWater'/*, 'UpRespect', 'UpHarm', 'UpGreenhouse', 'UpWaste', 'UpCommunity', 'UpEmployees'*/];
-  ffCheckCores = ['CoreEnergy', 'CoreWater'/*, 'CoreHarm', 'CoreGreenhouse', 'CoreEncroach', 'CoreWaste',
-                  'CoreEmployees', 'CoreConcerns', 'CoreCommunity'*/];
-  ffCheckUses = ['UseEnvi', 'UseGreenhouse'/*, 'UsePeople', 'UseCommunic', 'RepProd', 'RepCommunity'*/];
+  ffCheckUps = ['UpEnergy', 'UpWater', 'UpRespect', 'UpHarm', 'UpGreenhouse', 'UpWaste', 'UpCommunity', 'UpEmployees'];
+  ffCheckCores = ['CoreEnergy', 'CoreWater', 'CoreHarm', 'CoreGreenhouse', 'CoreEncroach', 'CoreWaste',
+                  'CoreEmployees', 'CoreConcerns', 'CoreCommunity'];
+  ffCheckUses = ['UseEnvi', 'UseGreenhouse', 'UsePeople', 'UseCommunic', 'RepProd', 'RepCommunity'];
 
   // Variables for Business Potential Check, tag used: bp
-  bpCheck = true; bpWeight = 1; bpRank = 0;
+  bpCheck = true; bpWeight = 1; bpRank = 0; bpData = '';
   bps = ['brandRep', 'opExp', 'emplProd', 'staffExp', 'marketValue', 'innovCult', 'risk', 'revGrowth'];
 
   score = 0; grade = '';
@@ -72,7 +72,18 @@ export class AppComponent {
     this.drupaldataservice.getData();
     // this.drupaldataservice.postData();
   }
-
+  reset() {
+    this.text = [];
+    this.vcRank = 0;
+    this.ffMarketRank = 0;
+    this.ffBenchRank = 0;
+    this.ffRank = 0;
+    this.bpRank = 0;
+    this.vcData = '';
+    this.ffData = '';
+    this.bpData = '';
+    this.data = '';
+  }
   switchLanguage(language: string) {
     this.translate.use(language);
   }
@@ -96,7 +107,6 @@ export class AppComponent {
     }
     this.score = points / weights;
     this.getGrade();
-    // this.drupaldataservice.postData(this.vcData);
 
     // todo Final Calculations
     // this.text.push('Score: ' + this.score.toString());
@@ -116,13 +126,27 @@ export class AppComponent {
       this.grade = 'D - Business case is not future fit.';
     }
   }
-  reset() {
-    this.text = [];
-    this.vcRank = 0;
-    this.ffMarketRank = 0;
-    this.ffBenchRank = 0;
-    this.ffRank = 0;
-    this.bpRank = 0;
+
+  post() {
+    this.reset();
+    if (this.valueCheck) {
+      this.vcJson();
+      if (this.ffCheck) {
+        this.vcData += ',';
+      }
+    }
+    if (this.ffCheck) {
+      this.ffJson();
+      if (this.bpCheck) {
+        this.ffData += ',';
+      }
+    }
+    if (this.bpCheck) {
+      this.bpJson();
+    }
+    this.data = '{' + this.vcData + this.ffData + this.bpData +'}';
+    console.log(this.data);
+    this.drupaldataservice.postData(this.data);
   }
 
   // calculates average of a questionnaire
@@ -150,7 +174,7 @@ export class AppComponent {
       // Adding Value Check Title to PDF
       this.text.push(document.getElementById('vc').innerHTML);
       this.vcRank = this.getAverage('vc', this.vcs);
-      this.vcJson();
+
       /*
       // Appends PDF content with question, value and text
       let vcTitle = <HTMLInputElement>document.getElementsByClassName('vcTitle')[i];
@@ -163,7 +187,7 @@ export class AppComponent {
   }
 
   vcJson() {
-    this.vcData = '{ "vc": {';
+    this.vcData = '"vc": {';
     for (let i = 0; i < this.vcs.length; i++) {
       this.vcData += '\"' + this.vcs[i] + '\"' + ':';
       const text = <HTMLInputElement>document.getElementsByClassName('vcText')[i];
@@ -177,7 +201,7 @@ export class AppComponent {
       }
     }
     this.vcData = this.vcData.slice(0, -1);
-    this.vcData += '}}';
+    this.vcData += '}';
   }
 
   ffCheckEval() {
@@ -191,7 +215,6 @@ export class AppComponent {
       this.ffMarketRank = (this.getAverage('ffup', this.ffCheckUps, 'M')
         + this.getAverage('ffcore', this.ffCheckCores, 'M') + this.getAverage('ffcore', this.ffCheckUses, 'M') * 2) / 4;
       this.ffRank = (this.ffBenchRank + this.ffMarketRank) / 2;
-      this.ffJson();
 
       // Appends PDF content with question, value and text
       /*
@@ -206,7 +229,7 @@ export class AppComponent {
   }
 
   ffJson() {
-    this.ffData = '{ "ffc": { "ffup": {';
+    this.ffData = '"ffc": { "ffup": {';
     let radioB: string;
     let radioM: string;
     let text = <HTMLInputElement>document.getElementById('ffupText');
@@ -228,7 +251,7 @@ export class AppComponent {
       const data = {benchmark: parseInt(radioB), market: parseInt(radioM)};
       this.ffData += JSON.stringify(data) + ',';
     }
-    this.ffData += JSON.stringify({ffuptext: text.value});
+    this.ffData += '\"ffuptext\": \"' + text.value + '\"';
     this.ffData += '}, "ffcore": {';
 
     text = <HTMLInputElement>document.getElementById('ffcoreText');
@@ -250,7 +273,7 @@ export class AppComponent {
       const data = {benchmark: parseInt(radioB), market: parseInt(radioM)};
       this.ffData += JSON.stringify(data) + ',';
     }
-    this.ffData += JSON.stringify({ffcoretext: text.value});
+    this.ffData += '\"ffcoretext\": \"' + text.value + '\"';
     this.ffData += '}, "ffuse": {';
 
     text = <HTMLInputElement>document.getElementById('ffuseText');
@@ -272,9 +295,8 @@ export class AppComponent {
       const data = {benchmark: parseInt(radioB), market: parseInt(radioM)};
       this.ffData += JSON.stringify(data) + ',';
     }
-    this.ffData += JSON.stringify({ffusetext: text.value});
-    this.ffData += '}}}';
-    console.log(this.ffData);
+    this.ffData += '\"ffusetext\": \"' + text.value + '\"';
+    this.ffData += '}}';
   }
 
   busPotCheckEval() {
@@ -295,6 +317,49 @@ export class AppComponent {
 
       console.log(this.bpRank);
     }
+  }
+
+  bpJson() {
+    this.bpData = '"bp": {';
+    this.bpData += '"rightDirect": { "score": ';
+    let direct = <HTMLInputElement>document.getElementsByName('1')[0];
+    console.log(direct.value);
+    if (direct.checked) {
+      console.log(direct.value);
+      this.bpData += direct.value;
+    } else {
+      direct = <HTMLInputElement>document.getElementsByName('1')[1];
+      this.bpData += direct.value;
+    }
+    let text = <HTMLInputElement>document.getElementById('bprdText');
+    this.bpData += ', "text": "' + text.value + '"},';
+
+    this.bpData += '"flexPlatform": { "score": ';
+    let platform = <HTMLInputElement>document.getElementsByName('2')[0];
+    if (platform.checked) {
+      this.bpData += platform.value;
+    } else {
+      platform = <HTMLInputElement>document.getElementsByName('2')[1];
+      this.bpData += platform.value;
+    }
+    text = <HTMLInputElement>document.getElementById('bpfpText');
+    this.bpData += ', "text": "' + text.value + '"},';
+
+    for (let i = 0; i < this.bps.length; i++) {
+      this.bpData += '\"' + this.bps[i] + '\"' + ':';
+      const text = <HTMLInputElement>document.getElementsByClassName('bpText')[i];
+      for (let j = 0; j < this.scaleAbsolute.length; j++) {
+        const radio = <HTMLInputElement>document.getElementsByName(this.bps[i])[j];
+        if (radio.checked === true) {
+          // add to average
+          const data = {score: parseInt(radio.value), text: text.value};
+          this.bpData += JSON.stringify(data) + ',';
+        }
+      }
+    }
+    this.bpData = this.bpData.slice(0, -1);
+    this.bpData += '}';
+    console.log(this.bpData);
   }
 
   // used to create PDF and make it download

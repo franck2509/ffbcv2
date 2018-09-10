@@ -221,7 +221,7 @@
           </div>
         </div>
         <div class="col-sm">
-          <textarea class="bpText" rows="3" style="width: 100%"></textarea>
+          <textarea class="bprdText" id="bprdText" rows="3" style="width: 100%"></textarea>
         </div>
       </div>
     </div>
@@ -244,7 +244,7 @@
           </div>
         </div>
         <div class="col-sm">
-          <textarea class="bpText" rows="3" style="width: 100%"></textarea>
+          <textarea class="bpfpText" id="bpfpText" rows="3" style="width: 100%"></textarea>
         </div>
       </div>
     </div>
@@ -277,7 +277,9 @@
   </div>
 </div>
 <div style="margin-left: 3em">
-  <button id="validate" type="submit" (click)= "result()">Submit</button>
+  <button id="validate" type="submit" (click)= "result()">Evaluation</button>
+  <button id="post" type="submit" (click)= "post()">Firebase</button>
+  <button type="submit" (click)= "bpJson()">bp</button>
   <button type="submit" (click)="savePDF()">Download PDF</button><br><br>
   <h3>Validation Score</h3>
   <p *ngIf="valueCheck">Value Check: {{vcRank}}%</p>
