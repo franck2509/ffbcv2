@@ -21,6 +21,11 @@
   "SolCat": "Kategorie der Lösung",
   "SolLife": "Lebenszyklusstadium der Lösung",
 
+  "ValInf": "Informationen bezüglich der Validierung",
+  "ValSource": "Validierungsquellen",
+  "ValDate": "Datum der Validierung",
+  "ValTeam": "Validierungsteam",
+
   "CustNeed": "Kundenbedürfnisse",
   "CustNeedQ": "Wie ausgeprägt ist ihr Verständnis und ihr Beschrieb der Kundenbedürfnisse und des Kunden? Inwiefern hängt das Verständnis des Kundenbedürfnisses mit seiner Future fitness zusammen? Inwiefern sind Systeme, Prozesse, Feedback loops eingerichtet oder geplant um die Entwicklung der Kundenbedürfnisse zu kennen?",
   "MarkOport": "Marktchancen",

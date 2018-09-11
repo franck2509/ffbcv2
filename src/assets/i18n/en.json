@@ -21,6 +21,11 @@
   "SolCat": "Solution Category",
   "SolLife": "Solution Lifecycle Stage",
 
+  "ValInf": "Validation Information",
+  "ValSource": "Validation Sources",
+  "ValDate": "Validation Date",
+  "ValTeam": "Validation Team",
+
   "CustNeed": "Customer Needs",
   "CustNeedQ": "To what extent is the customer and the customer's significant unmet need precisely understood and described? To what extent is the understanding of the customer's significant need related to his/her future fitness? To what extent are there systems, processes, feedback loops in place or planned which support understanding the evolution of customer's significant needs?",
   "MarkOport": "Market Opportunity",

@@ -16,44 +16,50 @@
         </span>
         <span>
           <td nowrap translate>OrgDesc</td><br>
-          <textarea class="orgDesc" rows="3" style="margin-top: 0.6em; width: 100%"></textarea><br><br>
+          <textarea class="orgDesc" rows="3" style="margin-top: 0.6em; width: 100%"></textarea>
         </span>
-        <span>
-          <td nowrap translate>OrgSize</td><br>
-          <div class="btn-group btn-group-toggle" style="margin-top: 0.6em" data-toggle="buttons">
-              <!-- Radio Buttons -->
-              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
-                <input type="radio" name="orgSize" [value]="49" autocomplete="off"> 49 and less
-              </label>
-              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
-                <input type="radio" name="orgSize" [value]="249" autocomplete="off"> 50 - 249
-              </label>
-              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
-                <input type="radio" name="orgSize" [value]="250" autocomplete="off"> 250 and more
-              </label>
-            </div><br><br>
-        </span>
-        <span>
-          <td nowrap translate>IndustrySector</td><br>
-          <select style="margin-top: 0.6em">
-            <option *ngFor="let indSec of indSect" value="{{indSec}}">{{indSec}}</option>
-          </select><br><br>
-        </span>
-        <span>
-          <td nowrap translate>Country</td><br>
-          <select style="margin-top: 0.6em">
-            <option *ngFor="let country of country_list" value="{{country}}">{{country}}</option>
-          </select><br><br>
-        </span>
-        <span>
-          <td nowrap translate>Region</td><br>
-          <select style="margin-top: 0.6em">
-            <option *ngFor="let region of regions" value="{{region}}">{{region}}</option>
-          </select><br><br>
-        </span>
+        <div class="row">
+          <div class="col- card-body">
+            <span>
+              <td nowrap translate>OrgSize</td><br>
+              <div class="btn-group btn-group-toggle" style="margin-top: 0.6em" data-toggle="buttons">
+                  <!-- Radio Buttons -->
+                  <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                    <input type="radio" name="orgSize" [value]="49" autocomplete="off"> 49 and less
+                  </label>
+                  <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                    <input type="radio" name="orgSize" [value]="249" autocomplete="off"> 50 - 249
+                  </label>
+                  <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                    <input type="radio" name="orgSize" [value]="250" autocomplete="off"> 250 and more
+                  </label>
+                </div><br><br>
+            </span>
+            <span>
+              <td nowrap translate>IndustrySector</td><br>
+              <select style="margin-top: 0.6em">
+                <option *ngFor="let indSec of indSect" value="{{indSec}}">{{indSec}}</option>
+              </select>
+            </span>
+          </div>
+          <div class="col- card-body">
+            <span>
+              <td nowrap translate>Country</td><br>
+              <select style="margin-top: 0.6em">
+                <option *ngFor="let country of country_list" value="{{country}}">{{country}}</option>
+              </select><br><br>
+            </span>
+            <span>
+              <td nowrap translate>Region</td><br>
+              <select style="margin-top: 0.6em">
+                <option *ngFor="let region of regions" value="{{region}}">{{region}}</option>
+              </select>
+            </span>
+          </div>
+        </div>
       </div>
     </div><br><br>
-
+    <!-- Solution -->
     <div class="card border-secondary" style="margin-right: 3em">
       <!-- Card Header = upper grey area, Question Topic Displayed -->
       <h4 class="orgTitle card-header" translate>Solut</h4>
@@ -72,43 +78,76 @@
         </span>
         <span>
           <td nowrap translate>SpecReq</td><br>
-          <textarea class="specReq" rows="3" style="margin-top: 0.6em; width: 100%"></textarea><br><br>
+          <textarea class="specReq" rows="3" style="margin-top: 0.6em; width: 100%"></textarea>
         </span>
+        <div class="row">
+          <div class="col- card-body">
+            <span>
+              <td nowrap translate>SolCat</td><br>
+              <div class="btn-group btn-group-toggle" style="margin-top: 0.6em" data-toggle="buttons">
+                  <!-- Radio Buttons -->
+                  <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                    <input type="radio" name="solCat" [value]="'physical product'" autocomplete="off"> Physical Product
+                  </label>
+                  <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                    <input type="radio" name="solCat" [value]="'service'" autocomplete="off"> Service
+                  </label>
+                  <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                    <input type="radio" name="solCat" [value]="'infrastructure'" autocomplete="off"> Infrastructure
+                  </label>
+              </div>
+            </span>
+          </div>
+          <div class="col- card-body">
+            <span>
+              <td nowrap translate>SolLife</td><br>
+              <div class="btn-group btn-group-toggle" style="margin-top: 0.6em" data-toggle="buttons">
+                  <!-- Radio Buttons -->
+                  <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                    <input type="radio" name="solLife" [value]="'Plan, concept'" autocomplete="off"> Plan, concept
+                  </label>
+                  <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                    <input type="radio" name="solLife" [value]="'Market introduction'" autocomplete="off"> Market introduction
+                  </label>
+                  <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                    <input type="radio" name="solLife" [value]="'Growth'" autocomplete="off"> Growth
+                  </label>
+                  <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                    <input type="radio" name="solLife" [value]="'Maturity'" autocomplete="off"> Maturity
+                  </label>
+                  <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                    <input type="radio" name="solLife" [value]="'Saturation, decline'" autocomplete="off"> Saturation, decline
+                  </label>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><br><br>
+  <!-- Validation Information -->
+  <div>
+    <div class="card border-secondary" style="margin-right: 3em">
+      <!-- Card Header = upper grey area, Question Topic Displayed -->
+      <h4 class="orgTitle card-header" translate>ValInf</h4>
+      <div class="card-body">
+        <div class="row">
+          <div class="col- card-body">
+            <span>
+              <td  translate>ValSource</td><br>
+              <input style="margin-top: 0.6em" type="text">
+            </span>
+          </div>
+          <div class="col- card-body">
+            <span>
+              <td nowrap translate>ValDate</td><br>
+              <input style="margin-top: 0.6em" type="text">
+            </span>
+          </div>
+        </div>
         <span>
-          <td nowrap translate>SolCat</td><br>
-          <div class="btn-group btn-group-toggle" style="margin-top: 0.6em" data-toggle="buttons">
-              <!-- Radio Buttons -->
-              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
-                <input type="radio" name="solCat" [value]="'physical product'" autocomplete="off"> Physical Product
-              </label>
-              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
-                <input type="radio" name="solCat" [value]="'service'" autocomplete="off"> Service
-              </label>
-              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
-                <input type="radio" name="solCat" [value]="'infrastructure'" autocomplete="off"> Infrastructure
-              </label>
-          </div><br><br>
-        </span>
-        <span>
-          <td nowrap translate>SolLife</td><br>
-          <div class="btn-group btn-group-toggle" style="margin-top: 0.6em" data-toggle="buttons">
-              <!-- Radio Buttons -->
-              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
-                <input type="radio" name="solLife" [value]="'Plan, concept'" autocomplete="off"> Plan, concept
-              </label>
-              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
-                <input type="radio" name="solLife" [value]="'Market introduction'" autocomplete="off"> Market introduction
-              </label>
-              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
-                <input type="radio" name="solLife" [value]="'Growth'" autocomplete="off"> Growth
-              </label>
-              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
-                <input type="radio" name="solLife" [value]="'Maturity'" autocomplete="off"> Maturity
-              </label>
-              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
-                <input type="radio" name="solLife" [value]="'Saturation, decline'" autocomplete="off"> Saturation, decline
-              </label>
-          </div><br><br>
+          <td nowrap translate>ValTeam</td><br>
+          <textarea class="valTeam" rows="3" style="margin-top: 0.6em; width: 100%"></textarea>
         </span>
       </div>
     </div>
