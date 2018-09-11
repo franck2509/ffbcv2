@@ -1,7 +1,25 @@
 {
-  "FFTitle": "FFBCV Angular Prototyp",
   "Select": "Fragebögen auswählen",
   "weight": "Gewichtung:",
+
+  "FFTitle": "FFBCV Angular Prototyp",
+
+  "Overview": "Übersicht",
+  "Organization": "Organisation",
+  "OrgName": "Name der Organisation",
+  "OrgDesc": "Beschreibung der Organisation",
+  "OrgSize": "Grösse der Organisation [Mitarbeiter]",
+  "IndustrySector": "Industriesektor [NAICS]",
+  "Country": "Land",
+  "Region": "Region",
+
+  "Solut": "Lösung",
+  "SolutionDesc": "Beschreibung der Lösung",
+  "SolutionVis": "Visualisierung der Lösung",
+  "Sponsor": "Sponsor",
+  "SpecReq": "Bestimmte Wünsche",
+  "SolCat": "Kategorie der Lösung",
+  "SolLife": "Lebenszyklusstadium der Lösung",
 
   "CustNeed": "Kundenbedürfnisse",
   "CustNeedQ": "Wie ausgeprägt ist ihr Verständnis und ihr Beschrieb der Kundenbedürfnisse und des Kunden? Inwiefern hängt das Verständnis des Kundenbedürfnisses mit seiner Future fitness zusammen? Inwiefern sind Systeme, Prozesse, Feedback loops eingerichtet oder geplant um die Entwicklung der Kundenbedürfnisse zu kennen?",

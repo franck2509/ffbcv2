@@ -38,19 +38,81 @@
           <select style="margin-top: 0.6em">
             <option *ngFor="let indSec of indSect" value="{{indSec}}">{{indSec}}</option>
           </select><br><br>
-
         </span>
         <span>
           <td nowrap translate>Country</td><br>
+          <select style="margin-top: 0.6em">
+            <option *ngFor="let country of country_list" value="{{country}}">{{country}}</option>
+          </select><br><br>
         </span>
         <span>
           <td nowrap translate>Region</td><br>
+          <select style="margin-top: 0.6em">
+            <option *ngFor="let region of regions" value="{{region}}">{{region}}</option>
+          </select><br><br>
         </span>
       </div>
+    </div><br><br>
 
-
+    <div class="card border-secondary" style="margin-right: 3em">
+      <!-- Card Header = upper grey area, Question Topic Displayed -->
+      <h4 class="orgTitle card-header" translate>Solut</h4>
+      <div class="card-body">
+        <span>
+          <td  translate>SolutionDesc</td><br>
+          <textarea class="solDesc" rows="3" style="margin-top: 0.6em; width: 100%"></textarea><br><br>
+        </span>
+        <span>
+          <td nowrap translate>SolutionVis</td><br>
+          <textarea class="solVis" rows="3" style="margin-top: 0.6em; width: 100%"></textarea><br><br>
+        </span>
+        <span>
+          <td nowrap translate>Sponsor</td><br>
+          <input style="margin-top: 0.6em" type="text"><br><br>
+        </span>
+        <span>
+          <td nowrap translate>SpecReq</td><br>
+          <textarea class="specReq" rows="3" style="margin-top: 0.6em; width: 100%"></textarea><br><br>
+        </span>
+        <span>
+          <td nowrap translate>SolCat</td><br>
+          <div class="btn-group btn-group-toggle" style="margin-top: 0.6em" data-toggle="buttons">
+              <!-- Radio Buttons -->
+              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                <input type="radio" name="solCat" [value]="'physical product'" autocomplete="off"> Physical Product
+              </label>
+              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                <input type="radio" name="solCat" [value]="'service'" autocomplete="off"> Service
+              </label>
+              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                <input type="radio" name="solCat" [value]="'infrastructure'" autocomplete="off"> Infrastructure
+              </label>
+          </div><br><br>
+        </span>
+        <span>
+          <td nowrap translate>SolLife</td><br>
+          <div class="btn-group btn-group-toggle" style="margin-top: 0.6em" data-toggle="buttons">
+              <!-- Radio Buttons -->
+              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                <input type="radio" name="solLife" [value]="'Plan, concept'" autocomplete="off"> Plan, concept
+              </label>
+              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                <input type="radio" name="solLife" [value]="'Market introduction'" autocomplete="off"> Market introduction
+              </label>
+              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                <input type="radio" name="solLife" [value]="'Growth'" autocomplete="off"> Growth
+              </label>
+              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                <input type="radio" name="solLife" [value]="'Maturity'" autocomplete="off"> Maturity
+              </label>
+              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                <input type="radio" name="solLife" [value]="'Saturation, decline'" autocomplete="off"> Saturation, decline
+              </label>
+          </div><br><br>
+        </span>
+      </div>
     </div>
-  </div>
+  </div><br><br>
 
   <h3 translate>Select</h3>
   <input type="checkbox" [(ngModel)]="valueCheck" name="valCheck" value="Value Check"> Value Check<br>
@@ -72,7 +134,9 @@
     <div class="card border-secondary" style="margin-right: 3em">
       <!-- Card Header = upper grey area, Question Topic Displayed -->
       <h4 class="vcTitle card-header" translate>{{valueCheck}}</h4>
+      <div class="card-body">
       <p translate>{{valueCheck}}Q</p> <!-- Further Questions belonging to the Topic -->
+      </div>
 
       <div class="card-footer text-muted"> <!-- Card footer = lower grey area, User Input goes here -->
         <!-- Footer split up in two columns. 1st contains rating and weight, 2nd textarea -->
@@ -255,7 +319,9 @@
 
   <div class="card border-secondary" style="margin-right: 3em">
     <h4 class="bpTitle card-header" translate>Right Direction</h4>
-    <p translate>directQ</p>
+    <div class="card-body">
+      <p translate>directQ</p>
+    </div>
     <!-- Input through user-->
     <div class="card-footer text-muted">
       <div class="row">
@@ -278,7 +344,9 @@
 
   <div class="card border-secondary" style="margin-right: 3em">
     <h4 class="bpTitle card-header" translate>Flexible Platform</h4>
-    <p translate>platformQ</p>
+    <div class="card-body">
+      <p translate>platformQ</p>
+    </div>
     <!-- Input through user-->
     <div class="card-footer text-muted">
       <div class="row">
@@ -305,7 +373,9 @@
     <!-- Title + further details-->
     <div class="card border-secondary" style="margin-right: 3em">
       <h4 class="bpTitle card-header" translate>{{bpCheck}}</h4>
-      <p translate>{{bpCheck}}Q</p>
+      <div class="card-body">
+        <p translate>{{bpCheck}}Q</p>
+      </div>
 
       <!-- Input through user-->
       <div class="card-footer text-muted">

@@ -1,7 +1,25 @@
 {
-  "FFTitle": "FFBCV Angular prototype",
   "Select": "Select Questionnaires",
   "weight": "Weight:",
+
+  "FFTitle": "FFBCV Angular prototype",
+
+  "Overview": "Overview",
+  "Organization": "Organisation",
+  "OrgName": "Organization Name",
+  "OrgDesc": "Orgnization Description",
+  "OrgSize": "Organization Size [employees]",
+  "IndustrySector": "Industry Sector [NAICS]",
+  "Country": "Country",
+  "Region": "Region",
+
+  "Solut": "Solution",
+  "SolutionDesc": "Solution Description",
+  "SolutionVis": "Solution Visualization",
+  "Sponsor": "Sponsor",
+  "SpecReq": "Specific Requests",
+  "SolCat": "Solution Category",
+  "SolLife": "Solution Lifecycle Stage",
 
   "CustNeed": "Customer Needs",
   "CustNeedQ": "To what extent is the customer and the customer's significant unmet need precisely understood and described? To what extent is the understanding of the customer's significant need related to his/her future fitness? To what extent are there systems, processes, feedback loops in place or planned which support understanding the evolution of customer's significant needs?",
