@@ -26,6 +26,12 @@ export class KeysPipe implements PipeTransform {
 
 export class AppComponent {
   // Variables for Value Check, tag used: vc
+  indSect = ['Agriculture, Forestry, Fishing and Hunting', 'Mining, Quarrying, and Oil and Gas Extraction', 'Utilities',
+             'Construction', 'Manufacturing', 'Wholesale Trade', 'Retail Trade', 'Transportation and Warehousing',
+             'Information', 'Finance and Insurance', 'Real Estate and Rental and Leasing', 'Professional, Scientific, and Technical Services',
+             'Management of Companies and Enterprises', 'Administrative and Support and Waste Management and Remediation Services',
+             'Educational Services', 'Health Care and Social Assistance', 'Arts, Entertainment, and Recreation',
+             'Accommodation and Food Services', 'Other Services (except Public Administration)', 'Public Administration'];
   data = '';
   valueCheck = true; // used to (de)activate questionnaire (with checkbox)
   // All Topic Tags
@@ -113,7 +119,6 @@ export class AppComponent {
   }
 
   getGrade() {
-    console.log('score ' + this.score);
     if (this.score > 100) {
       this.grade = 'R - Business case is positively future fit, adds value to society, is regenerative to environment.';
     } else if (this.score > 75) {

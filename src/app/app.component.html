@@ -3,6 +3,55 @@
   <button (click)="switchLanguage('de')">de</button>
 
   <h1 translate>FFTitle</h1>
+  <!-- Information regarding the Organization -->
+  <div>
+    <h2 translate>Overview</h2>
+    <div class="card border-secondary" style="margin-right: 3em">
+      <!-- Card Header = upper grey area, Question Topic Displayed -->
+      <h4 class="orgTitle card-header" translate>Organization</h4>
+      <div class="card-body">
+        <span>
+          <td  translate>OrgName</td><br>
+          <input style="margin-top: 0.6em" type="text"><br><br>
+        </span>
+        <span>
+          <td nowrap translate>OrgDesc</td><br>
+          <textarea class="orgDesc" rows="3" style="margin-top: 0.6em; width: 100%"></textarea><br><br>
+        </span>
+        <span>
+          <td nowrap translate>OrgSize</td><br>
+          <div class="btn-group btn-group-toggle" style="margin-top: 0.6em" data-toggle="buttons">
+              <!-- Radio Buttons -->
+              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                <input type="radio" name="orgSize" [value]="49" autocomplete="off"> 49 and less
+              </label>
+              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                <input type="radio" name="orgSize" [value]="249" autocomplete="off"> 50 - 249
+              </label>
+              <label class="btn btn-light btn-sm vcQ" style="border-color: black">
+                <input type="radio" name="orgSize" [value]="250" autocomplete="off"> 250 and more
+              </label>
+            </div><br><br>
+        </span>
+        <span>
+          <td nowrap translate>IndustrySector</td><br>
+          <select style="margin-top: 0.6em">
+            <option *ngFor="let indSec of indSect" value="{{indSec}}">{{indSec}}</option>
+          </select><br><br>
+
+        </span>
+        <span>
+          <td nowrap translate>Country</td><br>
+        </span>
+        <span>
+          <td nowrap translate>Region</td><br>
+        </span>
+      </div>
+
+
+    </div>
+  </div>
+
   <h3 translate>Select</h3>
   <input type="checkbox" [(ngModel)]="valueCheck" name="valCheck" value="Value Check"> Value Check<br>
   <input type="checkbox" [(ngModel)]="ffCheck" name="futureFit" value="Future Fit"> Future Fit Check<br>
@@ -276,6 +325,7 @@
     </div><br>
   </div>
 </div>
+
 <div style="margin-left: 3em">
   <button id="validate" type="submit" (click)= "result()">Evaluation</button>
   <button id="post" type="submit" (click)= "post()">Firebase</button>
