@@ -48,7 +48,10 @@ export class AppComponent {
     ,'Suriname','Swaziland','Sweden','Switzerland','Syria','Taiwan','Tajikistan','Tanzania','Thailand','Timor L\'Este','Togo','Tonga','Trinidad &amp; Tobago','Tunisia'
     ,'Turkey','Turkmenistan','Turks &amp; Caicos','Uganda','Ukraine','United Arab Emirates','United Kingdom','United States','United States Minor Outlying Islands','Uruguay'
     ,'Uzbekistan','Venezuela','Vietnam','Virgin Islands (US)','Yemen','Zambia','Zimbabwe'];
+
   regions = ['Europe', 'Asia', 'South America', 'North America', 'Africa', 'Oceania'];
+
+  overviewData = '';
 
   data = '';
   valueCheck = true; // used to (de)activate questionnaire (with checkbox)
@@ -103,6 +106,8 @@ export class AppComponent {
     this.ffBenchRank = 0;
     this.ffRank = 0;
     this.bpRank = 0;
+  }
+  resetJSON() {
     this.vcData = '';
     this.ffData = '';
     this.bpData = '';
@@ -130,10 +135,82 @@ export class AppComponent {
       points += this.bpRank * this.bpWeight; weights += this.bpWeight;
     }
     this.score = points / weights;
+    this.vcRank = parseFloat(this.vcRank.toFixed(2));
+    this.ffRank = parseFloat(this.ffRank.toFixed(2));
+    this.bpRank = parseFloat(this.bpRank.toFixed(2));
+    this.score = parseFloat(this.score.toFixed(2));
     this.getGrade();
 
     // todo Final Calculations
     // this.text.push('Score: ' + this.score.toString());
+  }
+
+  overviewJson() {
+    this.overviewData = '"overview": { "organization": {';
+    let data = <HTMLInputElement>document.getElementById('orgName');
+    this.overviewData += '"orgName": "' + data.value + '",';
+    data = <HTMLInputElement>document.getElementById('orgDesc');
+    this.overviewData += '"orgDesc": "' + data.value + '",';
+    let data1 = <HTMLInputElement>document.getElementById('orgSize1');
+    let data2 = <HTMLInputElement>document.getElementById('orgSize2');
+    if (data1.checked) {
+      data = <HTMLInputElement>document.getElementById('orgSize1');
+    } else if (data2.checked) {
+      data = <HTMLInputElement>document.getElementById('orgSize2');
+    } else {
+      data = <HTMLInputElement>document.getElementById('orgSize3');
+    }
+    this.overviewData += '"orgSize": "' + data.value + '",';
+    data = <HTMLInputElement>document.getElementById('indSec');
+    this.overviewData += '"indSec": "' + data.value + '",';
+    data = <HTMLInputElement>document.getElementById('country');
+    this.overviewData += '"country": "' + data.value + '",';
+    data = <HTMLInputElement>document.getElementById('region');
+    this.overviewData += '"region": "' + data.value + '"},';
+
+    this.overviewData += '"solution": {';
+    data = <HTMLInputElement>document.getElementById('solDesc');
+    this.overviewData += '"solDesc": "' + data.value + '",';
+    data = <HTMLInputElement>document.getElementById('solVis');
+    this.overviewData += '"solVis": "' + data.value + '",';
+    data = <HTMLInputElement>document.getElementById('sponsor');
+    this.overviewData += '"sponsor": "' + data.value + '",';
+    data = <HTMLInputElement>document.getElementById('specReq');
+    this.overviewData += '"specReq": "' + data.value + '",';
+    data1 = <HTMLInputElement>document.getElementById('solCat1');
+    data2 = <HTMLInputElement>document.getElementById('solCat2');
+    if (data1.checked) {
+      data = <HTMLInputElement>document.getElementById('solCat1');
+    } else if (data2.checked) {
+      data = <HTMLInputElement>document.getElementById('solCat2');
+    } else {
+      data = <HTMLInputElement>document.getElementById('solCat3');
+    }
+    this.overviewData += '"solCat": "' + data.value + '",';
+    data1 = <HTMLInputElement>document.getElementById('solLife1');
+    data2 = <HTMLInputElement>document.getElementById('solLife2');
+    const data3 = <HTMLInputElement>document.getElementById('solLife3');
+    const data4 = <HTMLInputElement>document.getElementById('solLife4');
+    if (data1.checked) {
+      data = <HTMLInputElement>document.getElementById('solLife1');
+    } else if (data2.checked) {
+      data = <HTMLInputElement>document.getElementById('solLife2');
+    } else if (data3.checked) {
+      data = <HTMLInputElement>document.getElementById('solLife3');
+    } else if (data4.checked) {
+      data = <HTMLInputElement>document.getElementById('solLife4');
+    } else {
+      data = <HTMLInputElement>document.getElementById('solLife5');
+    }
+    this.overviewData += '"solLife": "' + data.value + '"},';
+
+    this.overviewData += '"valInf": {';
+    data = <HTMLInputElement>document.getElementById('valSource');
+    this.overviewData += '"valSource": "' + data.value + '",';
+    data = <HTMLInputElement>document.getElementById('valDate');
+    this.overviewData += '"valDate": "' + data.value + '",';
+    data = <HTMLInputElement>document.getElementById('valTeam');
+    this.overviewData += '"valTeam": "' + data.value + '"}},';
   }
 
   getGrade() {
@@ -151,7 +228,7 @@ export class AppComponent {
   }
 
   post() {
-    this.reset();
+    this.resetJSON();
     if (this.valueCheck) {
       this.vcJson();
       if (this.ffCheck) {
@@ -167,7 +244,7 @@ export class AppComponent {
     if (this.bpCheck) {
       this.bpJson();
     }
-    this.data = '{' + this.vcData + this.ffData + this.bpData +'}';
+    this.data = '{' + this.overviewData + this.vcData + this.ffData + this.bpData +'}';
     console.log(this.data);
     this.drupaldataservice.postData(this.data);
   }
