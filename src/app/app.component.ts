@@ -52,25 +52,26 @@ export class AppComponent {
   regions = ['Europe', 'Asia', 'South America', 'North America', 'Africa', 'Oceania'];
 
   overviewData = '';
-
+  scoreData = '';
   data = '';
+
   valueCheck = true; // used to (de)activate questionnaire (with checkbox)
   // All Topic Tags
-  vcs = ['CustNeed', 'MarkOport', 'Solution', 'Collab', 'CustAdv', 'ResultFF'];
+  vcs = ['CustNeed', 'MarkOport'/*, 'Solution', 'Collab', 'CustAdv', 'ResultFF'*/];
   vcData = '';
   vcWeight = 1;
   vcRank = 0; // Final average of value check
 
   // Variables for Future Fit Check, tag used: ff
   ffCheck = true; ffWeight = 1; ffBenchRank = 0; ffMarketRank = 0; ffRank = 0; ffData = '';
-  ffCheckUps = ['UpEnergy', 'UpWater', 'UpRespect', 'UpHarm', 'UpGreenhouse', 'UpWaste', 'UpCommunity', 'UpEmployees'];
-  ffCheckCores = ['CoreEnergy', 'CoreWater', 'CoreHarm', 'CoreGreenhouse', 'CoreEncroach', 'CoreWaste',
-                  'CoreEmployees', 'CoreConcerns', 'CoreCommunity'];
-  ffCheckUses = ['UseEnvi', 'UseGreenhouse', 'UsePeople', 'UseCommunic', 'RepProd', 'RepCommunity'];
+  ffCheckUps = ['UpEnergy', 'UpWater'/*, 'UpRespect', 'UpHarm', 'UpGreenhouse', 'UpWaste', 'UpCommunity', 'UpEmployees'*/];
+  ffCheckCores = ['CoreEnergy', 'CoreWater'/*, 'CoreHarm', 'CoreGreenhouse', 'CoreEncroach', 'CoreWaste',
+                  'CoreEmployees', 'CoreConcerns', 'CoreCommunity'*/];
+  ffCheckUses = ['UseEnvi', 'UseGreenhouse'/*, 'UsePeople', 'UseCommunic', 'RepProd', 'RepCommunity'*/];
 
   // Variables for Business Potential Check, tag used: bp
   bpCheck = true; bpWeight = 1; bpRank = 0; bpData = '';
-  bps = ['brandRep', 'opExp', 'emplProd', 'staffExp', 'marketValue', 'innovCult', 'risk', 'revGrowth'];
+  bps = ['brandRep', 'opExp'/*, 'emplProd', 'staffExp', 'marketValue', 'innovCult', 'risk', 'revGrowth'*/];
 
   score = 0; grade = '';
   text = []; // used for PDF file, is on hold
@@ -140,7 +141,7 @@ export class AppComponent {
     this.bpRank = parseFloat(this.bpRank.toFixed(2));
     this.score = parseFloat(this.score.toFixed(2));
     this.getGrade();
-
+    this.scoreJson();
     // todo Final Calculations
     // this.text.push('Score: ' + this.score.toString());
   }
@@ -213,6 +214,25 @@ export class AppComponent {
     this.overviewData += '"valTeam": "' + data.value + '"}},';
   }
 
+  scoreJson() {
+    this.scoreData = ',"score": {'
+    if (this.valueCheck) {
+      this.scoreData += '"vCheck": "' + this.vcRank.toString() + '",';
+    } else {
+      this.scoreData += '"vCheck": "vc deactivated",';
+    }
+    if (this.ffCheck){
+      this.scoreData += '"ffCheck": "' + this.ffRank.toString() + '",';
+    } else {
+      this.scoreData += '"ffCheck": "vc deactivated",';
+    }
+    if (this.bpCheck) {
+      this.scoreData += '"bpCheck": "' + this.bpRank.toString() + '",';
+    } else {
+      this.scoreData += '"bpCheck": "bp deactivated",';
+    }
+    this.scoreData += '"totalScore": "' + this.score.toString() + '"}'
+  }
   getGrade() {
     if (this.score > 100) {
       this.grade = 'R - Business case is positively future fit, adds value to society, is regenerative to environment.';
@@ -229,6 +249,7 @@ export class AppComponent {
 
   post() {
     this.resetJSON();
+    this.overviewJson();
     if (this.valueCheck) {
       this.vcJson();
       if (this.ffCheck) {
@@ -244,7 +265,7 @@ export class AppComponent {
     if (this.bpCheck) {
       this.bpJson();
     }
-    this.data = '{' + this.overviewData + this.vcData + this.ffData + this.bpData +'}';
+    this.data = '{' + this.overviewData + this.vcData + this.ffData + this.bpData + this.scoreData + '}';
     console.log(this.data);
     this.drupaldataservice.postData(this.data);
   }
