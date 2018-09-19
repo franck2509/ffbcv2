@@ -152,7 +152,6 @@
       </div>
     </div>
   </div><br><br>
-  <button (click)="overviewJson()">overview</button>
   <h3 translate>Select</h3>
   <input type="checkbox" [(ngModel)]="valueCheck" name="valCheck" value="Value Check"> Value Check<br>
   <input type="checkbox" [(ngModel)]="ffCheck" name="futureFit" value="Future Fit"> Future Fit Check<br>
@@ -352,7 +351,7 @@
   <h2 id="bp">Business Potential Check</h2>
   <span>
     <td nowrap translate>weight</td>
-    <input type="text" [(ngModel)]="ffWeight" style="width: 3em; margin-left: 1em"><br><br>
+    <input type="text" [(ngModel)]="bpWeight" style="width: 3em; margin-left: 1em"><br><br>
   </span>
   <h3>Strategic Positioning</h3>
 
@@ -438,7 +437,6 @@
 <div style="margin-left: 3em">
   <button id="validate" type="submit" (click)= "result()">Evaluation</button>
   <button id="post" type="submit" (click)= "post()">Firebase</button>
-  <button type="submit" (click)= "bpJson()">bp</button>
   <button type="submit" (click)="savePDF()">Download PDF</button><br><br>
   <h3>Validation Score</h3>
   <p *ngIf="valueCheck">Value Check: {{vcRank}}%</p>

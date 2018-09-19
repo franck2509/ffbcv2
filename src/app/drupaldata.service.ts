@@ -20,26 +20,6 @@ export class DrupaldataService {
 
 
     postData(data) {
-    // const json = JSON.stringify({var1: 'test', var2: 3});
-    const json = {
-      "vc": {
-        "vcq1": {
-          "score": "strong",
-          "text": "blabla"
-        },
-        "vcq2": {
-          "score": "weak",
-          "text": "bla2bla2"
-        }
-      },
-      "ffc": {
-      "ffcq1": {
-        "bench": "strong",
-        "market": "better"
-      }
-    }
-    };
-    const params = 'json=' + json;
     // const headers = new HttpHeaders();
     // headers.append('Content-Type', 'application/x-www-form-urlencoded');
     return this.http.post('https://ffbcv-eaadf.firebaseio.com/reports.json', data).subscribe((data: any) => console.log(data));

@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7ccca56-5fb8-4397-9fb7-37668f9b053b" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/drupaldata.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/drupaldata.service.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,23 +20,37 @@
     <session id="742090722">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.16" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
-          <entry key="TypeScriptServerServiceImpl" value="1" />
+          <entry key="TypeScriptServerServiceImpl" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="ts" value="319" />
+          <entry key="html" value="3" />
+          <entry key="ts" value="378" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="TypeScript" value="319" />
+          <entry key="HTML" value="3" />
+          <entry key="TypeScript" value="378" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="html" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="1" />
         </counts>
       </usages-collector>
     </session>
@@ -43,16 +60,21 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/app.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="251" column="24" selection-start-line="251" selection-start-column="24" selection-end-line="251" selection-end-column="24" />
+            <state relative-caret-position="425">
+              <caret line="73" column="101" lean-forward="true" selection-start-line="73" selection-start-column="101" selection-end-line="73" selection-end-column="101" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
                 <element signature="n#KeysPipe#0" />
                 <element signature="e#795#1528#0" />
                 <element signature="e#1548#4122#0" />
-                <element signature="e#5348#5558#0" />
-                <element signature="e#5578#5786#0" />
+                <element signature="e#5386#5596#0" />
+                <element signature="e#5616#5824#0" />
+                <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
+                <element signature="n#!!block;n#result#0;n#AppComponent#0" />
+                <element signature="n#!!block;n#overviewJson#0;n#AppComponent#0" />
+                <element signature="n#!!block;n#scoreJson#0;n#AppComponent#0" />
                 <element signature="n#!!block;n#getGrade#0;n#AppComponent#0" />
+                <element signature="n#!!block;n#post#0;n#AppComponent#0" />
                 <element signature="n#!!block;n#getAverage#0;n#AppComponent#0" />
                 <element signature="n#!!block;n#valCheckEval#0;n#AppComponent#0" />
                 <element signature="n#!!block;n#vcJson#0;n#AppComponent#0" />
@@ -60,6 +82,33 @@
                 <element signature="n#!!block;n#ffJson#0;n#AppComponent#0" />
                 <element signature="n#!!block;n#busPotCheckEval#0;n#AppComponent#0" />
                 <element signature="n#!!block;n#bpJson#0;n#AppComponent#0" />
+                <element signature="n#!!block;n#savePDF#0;n#AppComponent#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/app.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="439" selection-start-line="439" selection-end-line="439" />
+              <folding>
+                <element signature="n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" />
+                <element signature="n#style#0;n#input#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#span#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" />
+                <element signature="n#style#0;n#div#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#span#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" />
+                <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" />
+                <element signature="n#style#0;n#select#0;n#span#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#span#2;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#span#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" />
+                <element signature="n#div#1;n#div#0;n#!!top" />
+                <element signature="n#style#0;n#input#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#span#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#span#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#div#2;n#!!top" />
+                <element signature="n#style#0;n#div#0;n#div#3;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -68,8 +117,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/drupaldata.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+            <state relative-caret-position="143">
+              <caret line="34" column="20" lean-forward="true" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -93,6 +142,7 @@
       <find>vcda</find>
       <find>result</find>
       <find>reset</find>
+      <find>ffW</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -107,8 +157,8 @@
         <option value="$PROJECT_DIR$/app/app.module.ts" />
         <option value="$PROJECT_DIR$/assets/i18n/en.json" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/app/drupaldata.service.ts" />
         <option value="$PROJECT_DIR$/assets/i18n/de.json" />
+        <option value="$PROJECT_DIR$/app/drupaldata.service.ts" />
         <option value="$PROJECT_DIR$/app/app.component.html" />
         <option value="$PROJECT_DIR$/app/app.component.ts" />
       </list>
@@ -120,26 +170,35 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-8" />
-    <option name="width" value="1022" />
-    <option name="height" value="1048" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-12" />
+    <option name="y" value="-12" />
+    <option name="width" value="1390" />
+    <option name="height" value="1756" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="src" type="b2602c69:ProjectViewProjectNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="src" type="b2602c69:ProjectViewProjectNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -194,18 +253,19 @@
       <workItem from="1536565575338" duration="13176000" />
       <workItem from="1536827312965" duration="11229000" />
       <workItem from="1537000008350" duration="1835000" />
+      <workItem from="1537294791415" duration="5123000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175304000" />
+    <option name="totallyTimeSpent" value="180427000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1381" height="885" extended-state="7" />
+    <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.37151247" />
+      <window_info content_ui="combo" id="Project" order="1" weight="0.35811836" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.32901555" />
@@ -225,12 +285,12 @@
     </layout>
     <layout-to-restore>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.37151247" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.35811836" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.32901555" />
       <window_info anchor="bottom" id="Terminal" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="3" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="TypeScript" order="5" />
       <window_info anchor="bottom" id="Find" order="6" />
@@ -305,8 +365,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/drupaldata.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+        <state relative-caret-position="143">
+          <caret line="34" column="20" lean-forward="true" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
@@ -315,8 +375,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+        <state relative-caret-position="204">
+          <caret line="439" selection-start-line="439" selection-end-line="439" />
           <folding>
             <element signature="n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" />
             <element signature="n#style#0;n#input#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -327,26 +387,33 @@
             <element signature="n#style#0;n#select#0;n#span#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#span#2;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#span#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#!!top" />
             <element signature="n#style#0;n#input#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#span#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#span#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#div#2;n#!!top" />
-            <element signature="n#div#3;n#!!top" />
+            <element signature="n#style#0;n#div#0;n#div#3;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="251" column="24" selection-start-line="251" selection-start-column="24" selection-end-line="251" selection-end-column="24" />
+        <state relative-caret-position="425">
+          <caret line="73" column="101" lean-forward="true" selection-start-line="73" selection-start-column="101" selection-end-line="73" selection-end-column="101" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
             <element signature="n#KeysPipe#0" />
             <element signature="e#795#1528#0" />
             <element signature="e#1548#4122#0" />
-            <element signature="e#5348#5558#0" />
-            <element signature="e#5578#5786#0" />
+            <element signature="e#5386#5596#0" />
+            <element signature="e#5616#5824#0" />
+            <element signature="n#!!block;n#constructor#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#result#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#overviewJson#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#scoreJson#0;n#AppComponent#0" />
             <element signature="n#!!block;n#getGrade#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#post#0;n#AppComponent#0" />
             <element signature="n#!!block;n#getAverage#0;n#AppComponent#0" />
             <element signature="n#!!block;n#valCheckEval#0;n#AppComponent#0" />
             <element signature="n#!!block;n#vcJson#0;n#AppComponent#0" />
@@ -354,6 +421,7 @@
             <element signature="n#!!block;n#ffJson#0;n#AppComponent#0" />
             <element signature="n#!!block;n#busPotCheckEval#0;n#AppComponent#0" />
             <element signature="n#!!block;n#bpJson#0;n#AppComponent#0" />
+            <element signature="n#!!block;n#savePDF#0;n#AppComponent#0" />
           </folding>
         </state>
       </provider>
