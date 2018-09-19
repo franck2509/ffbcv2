@@ -206,6 +206,7 @@ export class AppComponent {
   }
 
   scoreJson() {
+    this.result();
     this.scoreData = ',"score": {'
     if (this.valueCheck) {
       this.scoreData += '"vCheck": "' + this.vcRank.toString() + '",';
@@ -243,7 +244,7 @@ export class AppComponent {
     this.overviewJson();
     if (this.valueCheck) {
       this.vcJson();
-      if (this.ffCheck) {
+      if (this.ffCheck || this.bpCheck) {
         this.vcData += ',';
       }
     }
@@ -304,11 +305,15 @@ export class AppComponent {
     for (let i = 0; i < this.vcs.length; i++) {
       this.vcData += '\"' + this.vcs[i] + '\"' + ':';
       const text = <HTMLInputElement>document.getElementsByClassName('vcText')[i];
+      let text2 = text.value;
+      if (text.value == null) {
+        text2 = 'null';
+      }
       for (let j = 0; j < this.scaleAbsolute.length; j++) {
         const radio = <HTMLInputElement>document.getElementsByName(this.vcs[i])[j];
         if (radio.checked === true) {
-          // add to average
-          const data = {score: parseInt(radio.value), text: text.value};
+          // add to JSON
+          const data = {score: parseInt(radio.value), text: text2};
           this.vcData += JSON.stringify(data) + ',';
         }
       }
@@ -475,7 +480,7 @@ export class AppComponent {
     console.log(this.bpData);
   }
 
-  // used to create PDF and make it download
+  // used to create PDF and make it download; not implemented
   savePDF() {
     this.result();
     const doc = new jsPDF();

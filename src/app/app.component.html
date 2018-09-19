@@ -345,7 +345,6 @@
   </div><br>
 </div>
 
-
 <!-- Business Potential Check Questionnaire -->
 <div *ngIf="bpCheck" style="margin-left: 3em">
   <h2 id="bp">Business Potential Check</h2>
@@ -437,7 +436,7 @@
 <div style="margin-left: 3em">
   <button id="validate" type="submit" (click)= "result()">Evaluation</button>
   <button id="post" type="submit" (click)= "post()">Firebase</button>
-  <button type="submit" (click)="savePDF()">Download PDF</button><br><br>
+  <button type="submit" (click)="savePDF()" disabled>Download PDF</button><br><br>
   <h3>Validation Score</h3>
   <p *ngIf="valueCheck">Value Check: {{vcRank}}%</p>
   <p *ngIf="ffCheck">Future Fit Check: {{ffRank}}%</p>
@@ -446,9 +445,9 @@
   <p>SDG Score: {{grade}}</p>
 </div>
 
-<!--tr-bootstrap></tr-bootstrap-->
 
-<!--h1 translate>Title</h1>
+<!-- examples from ngx-translate module>
+<h1 translate>Title</h1>
 
 <div>
   {{ 'Intro' | translate:user }}
